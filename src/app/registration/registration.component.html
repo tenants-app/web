@@ -1,0 +1,48 @@
+<div class="container">
+    <mat-card class="card">
+        <h1>Rejestracja</h1>
+
+        <form [formGroup]="userData" (ngSubmit)="register()">
+            <div>
+                <mat-form-field class="input-wrapper">
+                    <input matInput placeholder="Nazwa użytkownika" formControlName="username" maxlength="30" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="input-wrapper">
+                    <input matInput type="email" placeholder="Email" formControlName="email" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="input-wrapper">
+                    <input matInput placeholder="Numer konta" formControlName="bank_account_number" maxlength="26"
+                           required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="input-wrapper">
+                    <input matInput type="password" placeholder="Hasło" formControlName="password" maxlength="30"
+                           required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="input-wrapper">
+                    <input matInput type="password" placeholder="Potwierdź hasło" formControlName="confirmPassword"
+                           maxlength="30" required>
+                </mat-form-field>
+            </div>
+
+            <div class="button-wrapper">
+                <button mat-raised-button color="primary" [disabled]="!userData.valid" type="submit">Rejestruj</button>
+            </div>
+        </form>
+    </mat-card>
+
+    <mat-card class="card">
+        <h2>Nie masz konta?</h2>
+
+        <div class="button-wrapper">
+            <button mat-raised-button color="primary" [routerLink]="['/login']">Logowanie</button>
+        </div>
+    </mat-card>
+</div>

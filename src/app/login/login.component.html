@@ -1,0 +1,32 @@
+<div class="container">
+  <mat-card class="card">
+    <h1>Logowanie</h1>
+
+    <form [formGroup]="userData" (ngSubmit)="login()">
+      <div>
+        <mat-form-field class="input-wrapper">
+          <input matInput type="email" placeholder="Email" formControlName="email" required>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="input-wrapper">
+          <input matInput type="password" placeholder="Hasło" formControlName="password" maxlength="30"
+                 required>
+        </mat-form-field>
+      </div>
+
+      <div class="button-wrapper">
+        <button mat-raised-button color="primary" [disabled]="!userData.valid" type="submit">Zaloguj</button>
+      </div>
+    </form>
+  </mat-card>
+
+  <mat-card class="card">
+    <h2>Masz już konto?</h2>
+
+    <div class="button-wrapper">
+      <button mat-raised-button color="primary" [routerLink]="['/register']">Rejestracja</button>
+    </div>
+  </mat-card>
+</div>
