@@ -1,10 +1,5 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
-import {Observable, from, BehaviorSubject} from 'rxjs';
 import {ApiService} from './api.service';
-
-const BASE_URL = environment.apiBaseUrl;
-const RegisterUser = '/auth/register';
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +16,11 @@ export class AuthService {
 
     public login(userData) {
         this.apiService.post('/auth/login', userData).subscribe(res => {
+            localStorage.setItem('access_token', res.user.token);
         });
+    }
+
+    public logout() {
+        localStorage.removeItem('access_token');
     }
 }
