@@ -3,5 +3,7 @@
 
     <span class="spacer"></span>
     <mat-icon class="icon" aria-hidden="false" aria-label="icon" [routerLink]="['/login']">account_circle</mat-icon>
+    <button *ngIf="isLoggedIn$ | async" (click)="onLogout()" mat-menu-item>Wyloguj</button>
 </mat-toolbar>
+
 <router-outlet></router-outlet>

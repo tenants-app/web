@@ -26,7 +26,7 @@ import {AuthInterceptor} from './interceptors/auth-interceptor';
         JwtModule.forRoot({
             config: {
                 tokenGetter: () => {
-                    return localStorage.getItem('access_token');
+                    return localStorage.getItem('token');
                 },
                 whitelistedDomains: ['localhost:3000']
             }
