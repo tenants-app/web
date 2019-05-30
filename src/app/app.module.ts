@@ -10,12 +10,16 @@ import {RegistrationComponent} from './registration/registration.component';
 import {HttpClientModule} from '@angular/common/http';
 import {JwtModule} from '@auth0/angular-jwt';
 import {AuthInterceptor} from './interceptors/auth-interceptor';
+import {GroupsComponent} from './groups/groups.component';
+import {AuthGuard} from './guards/auth.guard';
+import {GuestGuard} from './guards/guest.guard';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         RegistrationComponent,
+        GroupsComponent,
     ],
     imports: [
         BrowserModule,
@@ -32,7 +36,9 @@ import {AuthInterceptor} from './interceptors/auth-interceptor';
             }
         })
     ],
-    providers: [AuthInterceptor],
+    providers: [AuthInterceptor,
+        AuthGuard,
+        GuestGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -17,13 +17,21 @@ export class AuthService {
     }
 
     get isLoggedIn() {
-        return this.loggedIn.asObservable(); // {2}
+        if (localStorage.getItem('token')) {
+            this.loggedIn.next(true);
+        }
+        return this.loggedIn.asObservable();
     }
 
     public register(userData) {
         this.apiService.post('/auth/register', userData).subscribe(res => {
             this.handleAuthData(res.user);
         });
+    }
+
+    public isAuthenticated(): boolean {
+        const token = localStorage.getItem('token');
+        return !!token && !this.jwtHelper.isTokenExpired(token);
     }
 
     public login(userData) {
