@@ -15,6 +15,7 @@ import {AuthGuard} from './guards/auth.guard';
 import {GuestGuard} from './guards/guest.guard';
 import {FormsModule} from '@angular/forms';
 import {GroupDialogComponent} from './groups/group-dialog/group-dialog.component';
+import { GroupComponent } from './groups/group/group.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import {GroupDialogComponent} from './groups/group-dialog/group-dialog.component
         RegistrationComponent,
         GroupsComponent,
         GroupDialogComponent,
+        GroupComponent,
     ],
     imports: [
         BrowserModule,

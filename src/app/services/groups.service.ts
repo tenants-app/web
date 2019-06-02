@@ -15,10 +15,14 @@ export class GroupsService {
     public getAuthGroups() {
         this.apiService.get('/users/groups').subscribe(
             res => {
-                this.groups.next(res);
+                this.groups.next(res.groups);
             }
         );
         return this.groups.asObservable();
+    }
+
+    public getGroup(id) {
+        return this.apiService.get('/groups/' + id);
     }
 
     public createGroup(name): Observable<any> {

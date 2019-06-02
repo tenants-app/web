@@ -4,7 +4,6 @@
         <button mat-raised-button class="primary-button" (click)="openGroupDialog()">Add apartment</button>
     </div>
 </div>
-
 <div class="container" *ngIf="(groups$ | async); else noGroups">
     <mat-card class="card" *ngFor="let group of groups$ | async">
         <mat-card-header>
@@ -14,7 +13,7 @@
         </mat-card-header>
 
         <mat-card-actions>
-            <button mat-button class="secondary-button">Show</button>
+            <button [routerLink]="['/group/' + group._id]" mat-button class="secondary-button">Show</button>
         </mat-card-actions>
     </mat-card>
 </div>
