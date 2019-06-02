@@ -33,7 +33,7 @@ export class GroupDialogComponent {
 
     confirmAndClose() {
         this.loadingSpinner = false;
-        this.snackBar.show('Utworzono grupę');
+        this.snackBar.show('Utworzono grupę mieszkania');
         this.groupsService.getAuthGroups();
         this.dialogRef.close();
     }

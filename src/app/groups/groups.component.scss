@@ -1,0 +1,52 @@
+@import "../../styles";
+
+.header {
+  padding: 50px 10px;
+
+  h1 {
+    display: inline-block;
+    margin: 0;
+  }
+
+  .new-button {
+    display: inline-block;
+    float: right;
+  }
+}
+
+
+.container {
+  padding-bottom: 25px;
+}
+
+.primary-button {
+  background: $primaryColor;
+  color: white;
+}
+
+.primary-button:hover {
+  background: $secondaryColor;
+}
+
+.secondary-button {
+  background: $secondaryColor;
+  color: white;
+}
+
+.card {
+  width: 28.65% !important;
+  display: inline-block;
+  margin: 1%;
+
+  .letter-avatar {
+    text-transform: uppercase;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    padding: 5px;
+    background: $primaryColor;
+    color: white;
+    text-align: center;
+    font: 28px Arial, sans-serif;
+  }
+}

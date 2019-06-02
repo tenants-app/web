@@ -1,17 +1,18 @@
-<mat-toolbar>
-    <span [routerLink]="['/']">Współlokatorzy</span>
+<mat-toolbar *ngIf="!(isLoggedIn$ | async)" class="logged-out-toolbar">
+    <img [routerLink]="['/']" class="logo" src="../assets/tenantsWhite.png" alt="Tenants">
 
     <span class="spacer"></span>
-    <mat-icon *ngIf="!(isLoggedIn$ | async)" class="icon" aria-hidden="false" aria-label="icon" [routerLink]="['/login']">vpn_key</mat-icon>
-    <div *ngIf="isLoggedIn$ | async">
-        <button [routerLink]="['/groups']" mat-menu-item>
-            grupy
-        </button>
-        <mat-icon (click)="onLogout()" class="icon" aria-hidden="false" aria-label="icon">
-            power_settings_new
-        </mat-icon>
-    </div>
 
+    <mat-icon class="icon" aria-hidden="false" aria-label="icon" [routerLink]="['/login']">vpn_key</mat-icon>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="isLoggedIn$ | async" class="logged-in-toolbar">
+    <img [routerLink]="['/']" class="logo" src="../assets/tenants.png" alt="Tenants">
+
+    <span class="spacer"></span>
+
+    <mat-icon [routerLink]="['/groups']" class="primary-icon"> business</mat-icon>
+    <mat-icon (click)="onLogout()" class="secondary-icon" aria-hidden="false" aria-label="icon"> power_settings_new</mat-icon>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

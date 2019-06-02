@@ -1,10 +1,12 @@
-.icon {
+@import "../styles";
+
+.icon, .primary-icon, .secondary-icon {
   padding: 0 14px;
   cursor: pointer;
 }
 
-.icon:hover {
-  color: #3f51b5;
+.icon, .primary-icon, .secondary-icon:hover {
+  color: #333333;
 }
 
 span {
@@ -13,4 +15,41 @@ span {
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.logo {
+  max-height: 50px;
+  cursor: pointer;
+}
+
+.logged-in-toolbar {
+  background: white;
+
+  .primary-icon {
+    color: $primaryColor;
+  }
+
+  .primary-icon:hover {
+    color: $secondaryColor;
+  }
+
+  .secondary-icon {
+    color: $offColor;
+  }
+
+  .secondary-icon:hover {
+    color: $primaryColor;
+  }
+}
+
+.logged-out-toolbar {
+  background: linear-gradient(to right, $primaryColor, $secondaryColor);
+
+  .icon {
+    color: white;
+  }
+
+  .icon:hover {
+    color: $offColor;
+  }
 }

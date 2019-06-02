@@ -28,7 +28,7 @@ export class AuthService {
     public register(userData) {
         this.apiService.post('/auth/register', userData).subscribe(res => {
             this.handleAuthData(res.user);
-            this.snackBar.show('Konto zostało utworzone');
+            this.snackBar.show('Account was created');
         });
     }
 
@@ -47,13 +47,12 @@ export class AuthService {
         localStorage.removeItem('token');
         this.loggedIn.next(false);
         this.router.navigate(['/login']);
-        this.snackBar.show('Wylogowano');
     }
 
     public handleAuthData(data) {
         localStorage.setItem('token', data.token);
         this.loggedIn.next(true);
         this.router.navigate(['/']);
-        this.snackBar.show('Jesteś teraz zalogowany');
+        this.snackBar.show('You have logged in');
     }
 }

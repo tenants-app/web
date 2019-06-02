@@ -15,12 +15,7 @@ export class GroupsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getGroups();
         this.groups$ = this.groupsService.getAuthGroups();
-    }
-
-    public getGroups() {
-        this.groupsService.getAuthGroups();
     }
 
     public openGroupDialog() {

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {
     MatButtonModule,
@@ -10,7 +10,7 @@ import {
     MatSelectModule,
     MatInputModule,
     MatCardModule,
-    MatProgressSpinnerModule, MatSnackBarModule, MatDialogModule,
+    MatProgressSpinnerModule, MatSnackBarModule, MatDialogModule, MatGridListModule,
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -28,7 +28,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         MatProgressSpinnerModule,
         MatSnackBarModule,
         MatDialogModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatGridListModule
     ]
 })
-export class MaterialModule { }
+export class MaterialModule {
+}

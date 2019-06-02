@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from 'src/app/services/auth.service';
 import {Observable} from 'rxjs';
+import {SnackBarService} from './services/snack-bar.service';
 
 @Component({
     selector: 'app-root',
@@ -11,7 +12,8 @@ export class AppComponent implements OnInit {
     isLoggedIn$: Observable<boolean>;
 
     constructor(
-        private authService: AuthService) {
+        private authService: AuthService,
+        private snackBar: SnackBarService) {
     }
 
     ngOnInit() {
@@ -20,6 +22,7 @@ export class AppComponent implements OnInit {
 
     onLogout() {
         this.authService.logout();
+        this.snackBar.show('Logged out');
     }
 }
 

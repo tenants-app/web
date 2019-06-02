@@ -1,3 +1,5 @@
+@import "../../styles";
+
 .container {
   text-align: center;
 
@@ -13,6 +15,7 @@
 .button-wrapper {
   padding-top: 25px;
   button {
+    background: $primaryColor;
     min-width: 150px;
   }
 }

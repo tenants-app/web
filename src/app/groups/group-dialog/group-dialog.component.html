@@ -1,12 +1,12 @@
 <div class="group-form">
-    <h1 mat-dialog-title>Stwórz grupę</h1>
+    <h1 mat-dialog-title>Add new apartment</h1>
     <form class="form" [formGroup]="groupForm" (ngSubmit)="onCreation()" *ngIf="!loadingSpinner">
         <mat-form-field class="form-field">
-            <input matInput type="text" formControlName="name" placeholder="Nazwa grupy" required>
+            <input matInput type="text" formControlName="name" placeholder="Address/Name" required>
         </mat-form-field>
         <div class="button-wrapper">
             <div mat-dialog-actions class="auth-actions-btn">
-                <button mat-flat-button color="primary" type="submit" [disabled]="!groupForm.valid">Zapisz</button>
+                <button mat-flat-button color="primary" type="submit" [disabled]="!groupForm.valid">Save</button>
             </div>
             <div *ngIf="loadingSpinner" class="spinner">
                 <mat-progress-spinner></mat-progress-spinner>

@@ -1,19 +1,24 @@
-<div>
-    groups works!
-
-    <button mat-raised-button color="primary" [routerLink]="['/groups']">Stwórz grupę</button>
-
-    <div class="button-wrapper">
-        <button mat-raised-button color="primary" (click)="getGroups()">grupy</button>
-    </div>
-
-    <ol>
-        <li>
-            <button mat-raised-button (click)="openGroupDialog()">Pick one</button>
-        </li>
-    </ol>
-
-    <div *ngFor="let group of groups$ | async">
-        {{group.name}}
+<div class="header">
+    <h1>Your apartments</h1>
+    <div class="new-button">
+        <button mat-raised-button class="primary-button" (click)="openGroupDialog()">Add apartment</button>
     </div>
 </div>
+
+<div class="container" *ngIf="(groups$ | async); else noGroups">
+    <mat-card class="card" *ngFor="let group of groups$ | async">
+        <mat-card-header>
+            <div mat-card-avatar class="letter-avatar">{{group.name.charAt(0)}}</div>
+            <mat-card-title>{{group.name}}</mat-card-title>
+            <mat-card-subtitle>Group created {{group.createdAt.slice(0, 10)}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-actions>
+            <button mat-button class="secondary-button">Show</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #noGroups>
+    <h1>You have no apartment group</h1>
+</ng-template>
