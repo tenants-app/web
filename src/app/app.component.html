@@ -2,13 +2,16 @@
     <span [routerLink]="['/']">Współlokatorzy</span>
 
     <span class="spacer"></span>
-    <mat-icon class="icon" aria-hidden="false" aria-label="icon" [routerLink]="['/login']">account_circle</mat-icon>
-    <mat-icon *ngIf="isLoggedIn$ | async" (click)="onLogout()" class="icon" aria-hidden="false" aria-label="icon">
-        power_settings_new
-    </mat-icon>
-    <button *ngIf="isLoggedIn$ | async" [routerLink]="['/groups']" mat-menu-item>
-        grupy
-    </button>
+    <mat-icon *ngIf="!(isLoggedIn$ | async)" class="icon" aria-hidden="false" aria-label="icon" [routerLink]="['/login']">vpn_key</mat-icon>
+    <div *ngIf="isLoggedIn$ | async">
+        <button [routerLink]="['/groups']" mat-menu-item>
+            grupy
+        </button>
+        <mat-icon (click)="onLogout()" class="icon" aria-hidden="false" aria-label="icon">
+            power_settings_new
+        </mat-icon>
+    </div>
+
 </mat-toolbar>
 
 <router-outlet></router-outlet>

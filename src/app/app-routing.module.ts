@@ -10,7 +10,7 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent, canActivate: [GuestGuard]},
     {path: 'register', component: RegistrationComponent, canActivate: [GuestGuard]},
     {path: 'groups', component: GroupsComponent, canActivate: [AuthGuard]},
-    {path: '**', redirectTo: '/'}
+    {path: '**', redirectTo: '/groups'}
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GroupsService} from '../services/groups.service';
 import {DialogService} from '../services/dialog.service';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-groups',
@@ -8,16 +9,20 @@ import {DialogService} from '../services/dialog.service';
     styleUrls: ['./groups.component.scss']
 })
 export class GroupsComponent implements OnInit {
-    groups;
+    groups$: Observable<object>;
 
     constructor(private groupsService: GroupsService, private dialogService: DialogService) {
     }
+
     ngOnInit() {
+        this.getGroups();
+        this.groups$ = this.groupsService.getAuthGroups();
     }
 
     public getGroups() {
-        this.groups = this.groupsService.getAuthGroups();
+        this.groupsService.getAuthGroups();
     }
+
     public openGroupDialog() {
         this.dialogService.groupDialog();
     }

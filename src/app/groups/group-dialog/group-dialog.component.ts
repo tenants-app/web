@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {GroupsService} from '../../services/groups.service';
+import {SnackBarService} from '../../services/snack-bar.service';
 
 @Component({
     selector: 'app-group-dialog',
     templateUrl: './group-dialog.component.html',
     styleUrls: ['./group-dialog.component.scss']
 })
-export class GroupDialogComponent implements OnInit {
+export class GroupDialogComponent {
     public loadingSpinner = false;
 
     groupForm = new FormGroup({
@@ -16,9 +17,8 @@ export class GroupDialogComponent implements OnInit {
     });
 
     constructor(private groupsService: GroupsService,
+                private snackBar: SnackBarService,
                 public dialogRef: MatDialogRef<GroupDialogComponent>) {
-    }
-    ngOnInit() {
     }
 
     onCreation() {
@@ -26,20 +26,15 @@ export class GroupDialogComponent implements OnInit {
             return;
         }
         this.loadingSpinner = true;
-        this.groupsService.createGroup(this.groupForm.value.name);
-        // this.auth.login(email, password).subscribe(
-        //     () => {
-        this.confirmAndClose();
-        //     },
-        //     (err) => {
-        //       this.loadingSpinner = false;
-        //       this.loginError = err;
-        //     }
-        // );
+        this.groupsService.createGroup(this.groupForm.value.name).subscribe(res => {
+            this.confirmAndClose();
+        });
     }
 
     confirmAndClose() {
         this.loadingSpinner = false;
+        this.snackBar.show('Utworzono grupę');
+        this.groupsService.getAuthGroups();
         this.dialogRef.close();
     }
 }

@@ -1,7 +1,6 @@
 <div>
     groups works!
 
-
     <button mat-raised-button color="primary" [routerLink]="['/groups']">Stwórz grupę</button>
 
     <div class="button-wrapper">
@@ -14,4 +13,7 @@
         </li>
     </ol>
 
+    <div *ngFor="let group of groups$ | async">
+        {{group.name}}
+    </div>
 </div>
