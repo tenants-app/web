@@ -1,3 +1,17 @@
-<p>
-  groups works!
-</p>
+<div>
+    groups works!
+
+
+    <button mat-raised-button color="primary" [routerLink]="['/groups']">Stwórz grupę</button>
+
+    <div class="button-wrapper">
+        <button mat-raised-button color="primary" (click)="getGroups()">grupy</button>
+    </div>
+
+    <ol>
+        <li>
+            <button mat-raised-button (click)="openGroupDialog()">Pick one</button>
+        </li>
+    </ol>
+
+</div>

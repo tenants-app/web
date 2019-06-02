@@ -1,0 +1,16 @@
+<div class="group-form">
+    <h1 mat-dialog-title>Stwórz grupę</h1>
+    <form class="form" [formGroup]="groupForm" (ngSubmit)="onCreation()" *ngIf="!loadingSpinner">
+        <mat-form-field class="form-field">
+            <input matInput type="text" formControlName="name" placeholder="Nazwa grupy" required>
+        </mat-form-field>
+        <div class="button-wrapper">
+            <div mat-dialog-actions class="auth-actions-btn">
+                <button mat-flat-button color="primary" type="submit" [disabled]="!groupForm.valid">Zapisz</button>
+            </div>
+            <div *ngIf="loadingSpinner" class="spinner">
+                <mat-progress-spinner></mat-progress-spinner>
+            </div>
+        </div>
+    </form>
+</div>

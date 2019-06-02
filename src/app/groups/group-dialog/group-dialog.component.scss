@@ -1,0 +1,20 @@
+.group-form {
+  padding: 10px;
+  min-width: 350px;
+  h1 {
+    padding-bottom: 25px;
+  }
+  .button-wrapper {
+    padding-top: 25px;
+  }
+  .form-field, input {
+    width: 100% !important;
+  }
+}
+
+
+@media screen and (max-width: 580px) {
+  .group-form {
+    min-width: 190px;
+  }
+}

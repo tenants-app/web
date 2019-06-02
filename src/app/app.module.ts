@@ -13,6 +13,8 @@ import {AuthInterceptor} from './interceptors/auth-interceptor';
 import {GroupsComponent} from './groups/groups.component';
 import {AuthGuard} from './guards/auth.guard';
 import {GuestGuard} from './guards/guest.guard';
+import {FormsModule} from '@angular/forms';
+import {GroupDialogComponent} from './groups/group-dialog/group-dialog.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +22,7 @@ import {GuestGuard} from './guards/guest.guard';
         LoginComponent,
         RegistrationComponent,
         GroupsComponent,
+        GroupDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -27,6 +30,7 @@ import {GuestGuard} from './guards/guest.guard';
         MaterialModule,
         HttpClientModule,
         ReactiveFormsModule,
+        FormsModule,
         JwtModule.forRoot({
             config: {
                 tokenGetter: () => {
@@ -39,7 +43,10 @@ import {GuestGuard} from './guards/guest.guard';
     providers: [AuthInterceptor,
         AuthGuard,
         GuestGuard],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [
+        GroupDialogComponent,
+    ],
 })
 export class AppModule {
 }
