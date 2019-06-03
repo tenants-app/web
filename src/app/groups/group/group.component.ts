@@ -18,8 +18,9 @@ const ELEMENT_DATA = [
 
 export class GroupComponent implements OnInit {
     group;
-    dataSource = ELEMENT_DATA;
-    displayedColumns: string[] = ['name', 'bankAccount', 'action'];
+    dataSource;
+    displayedColumns: string[] = ['username', 'bank_account_number', 'action'];
+    members = [];
 
     constructor(private groupsService: GroupsService,
                 private route: ActivatedRoute,
@@ -35,6 +36,14 @@ export class GroupComponent implements OnInit {
             },
             (err) => {
                 this.router.navigate(['/']);
+            }
+        );
+        this.groupsService.getMembers(id).subscribe(
+            (res) => {
+                this.members = res.members;
+                this.dataSource = this.members;
+            },
+            (err) => {
             }
         );
     }

@@ -25,6 +25,10 @@ export class GroupsService {
         return this.apiService.get('/groups/' + id);
     }
 
+    public getMembers(id) {
+        return this.apiService.get('/groups/' + id + '/members');
+    }
+
     public createGroup(name): Observable<any> {
         return this.apiService.post('/groups/new', {name});
     }
