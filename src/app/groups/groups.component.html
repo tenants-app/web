@@ -4,7 +4,7 @@
         <button mat-raised-button class="primary-button" (click)="openGroupDialog()">Add apartment</button>
     </div>
 </div>
-<div class="container" *ngIf="(groups$ | async); else noGroups">
+<div class="container" *ngIf="(groups$ | async)">
     <mat-card class="card" *ngFor="let group of groups$ | async">
         <mat-card-header>
             <div mat-card-avatar class="letter-avatar">{{group.name.charAt(0)}}</div>
@@ -18,6 +18,6 @@
     </mat-card>
 </div>
 
-<ng-template #noGroups>
-    <h1>You have no apartment group</h1>
-</ng-template>
+<div class="header" *ngIf="!(groups$ | async).length">
+    <h3>You have no apartment groups</h3>
+</div>

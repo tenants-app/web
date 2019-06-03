@@ -1,0 +1,28 @@
+<div class="group-form" *ngIf="!link; else showLink">
+    <h1 mat-dialog-title>Create invitation link</h1>
+    <form class="form" [formGroup]="groupForm" (ngSubmit)="onCreation()" *ngIf="!loadingSpinner">
+        <mat-form-field class="form-field">
+            <input matInput type="email" placeholder="Email" formControlName="email" required>
+        </mat-form-field>
+        <div class="button-wrapper">
+            <div mat-dialog-actions class="auth-actions-btn">
+                <button mat-flat-button color="primary" type="submit" [disabled]="!groupForm.valid">Generate</button>
+            </div>
+            <div *ngIf="loadingSpinner" class="spinner">
+                <mat-progress-spinner></mat-progress-spinner>
+            </div>
+        </div>
+    </form>
+</div>
+
+<ng-template #showLink>
+    <h1>Invitation link generated</h1>
+    <mat-form-field class="form-field">
+        <input [ngModel]="link" matInput type="text" id="linkText">
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="myFunction()" class="copy-button">Copy</button>
+
+    <div mat-dialog-actions class="auth-actions-btn">
+        <button mat-flat-button color="primary" class="close-button" (click)="close()">Close</button>
+    </div>
+</ng-template>

@@ -28,4 +28,16 @@ export class GroupsService {
     public createGroup(name): Observable<any> {
         return this.apiService.post('/groups/new', {name});
     }
+
+    public joinGroup(token): Observable<any> {
+        return this.apiService.get('/activate_member/');
+    }
+
+    public createInvitation(email, groupId): Observable<any> {
+        const data = {
+            email: email,
+            group_id: groupId
+        };
+        return this.apiService.post('/groups/generate_member_link', data);
+    }
 }

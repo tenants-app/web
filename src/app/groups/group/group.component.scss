@@ -1,0 +1,40 @@
+@import "../../../styles";
+
+.card {
+  margin: 0 20%;
+}
+
+.spacer {
+  height: 50px;
+}
+
+.table {
+  width: 100% !important;
+}
+
+.member {
+  font-weight: bold;
+}
+
+.bank-number {
+  color: #1680b7;
+  font-weight: bold;
+}
+
+.button-cell {
+  text-align: right;
+}
+
+.actions {
+  text-align: right;
+
+  button {
+    background: $primaryColor;
+    color: white;
+  }
+}
+
+.container {
+  background: linear-gradient(to right, $primaryColor, $secondaryColor);
+  height: 90vh;
+}

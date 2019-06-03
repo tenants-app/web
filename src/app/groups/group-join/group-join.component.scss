@@ -1,0 +1,13 @@
+@import "../../../styles";
+
+.container {
+  padding: 25px 10px;
+
+  h3 {
+    padding-bottom: 25px;
+  }
+}
+
+.redirect-button {
+  background: $secondaryColor !important;
+}

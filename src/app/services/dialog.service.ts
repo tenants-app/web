@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {GroupDialogComponent} from '../groups/group-dialog/group-dialog.component';
+import {InvitationDialogComponent} from '../groups/invitation-dialog/invitation-dialog.component';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +14,13 @@ export class DialogService {
     public groupDialog() {
         let dialogRef: MatDialogRef<GroupDialogComponent>;
         dialogRef = this.dialog.open(GroupDialogComponent);
+
+        return dialogRef.beforeClosed();
+    }
+
+    public groupInvitationDialog(id) {
+        let dialogRef: MatDialogRef<InvitationDialogComponent>;
+        dialogRef = this.dialog.open(InvitationDialogComponent, {id});
 
         return dialogRef.beforeClosed();
     }

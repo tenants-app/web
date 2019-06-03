@@ -15,7 +15,9 @@ import {AuthGuard} from './guards/auth.guard';
 import {GuestGuard} from './guards/guest.guard';
 import {FormsModule} from '@angular/forms';
 import {GroupDialogComponent} from './groups/group-dialog/group-dialog.component';
-import { GroupComponent } from './groups/group/group.component';
+import {GroupComponent} from './groups/group/group.component';
+import {InvitationDialogComponent} from './groups/invitation-dialog/invitation-dialog.component';
+import {GroupJoinComponent} from './groups/group-join/group-join.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +27,8 @@ import { GroupComponent } from './groups/group/group.component';
         GroupsComponent,
         GroupDialogComponent,
         GroupComponent,
+        InvitationDialogComponent,
+        GroupJoinComponent,
     ],
     imports: [
         BrowserModule,
@@ -48,6 +52,7 @@ import { GroupComponent } from './groups/group/group.component';
     bootstrap: [AppComponent],
     entryComponents: [
         GroupDialogComponent,
+        InvitationDialogComponent,
     ],
 })
 export class AppModule {

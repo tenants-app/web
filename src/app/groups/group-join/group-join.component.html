@@ -1,0 +1,13 @@
+<div class="container" *ngIf="!(isLoggedIn$ | async); else confirm">
+    <h3>Create an account or log in to join a group</h3>
+
+    <div mat-dialog-actions class="auth-actions-btn">
+        <button mat-flat-button color="primary" class="redirect-button" [routerLink]="['/login']">Redirect to login
+        </button>
+    </div>
+</div>
+
+<ng-template #confirm>
+    <h3>Verifying...</h3>
+</ng-template>
+
