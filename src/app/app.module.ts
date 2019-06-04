@@ -18,6 +18,8 @@ import {GroupDialogComponent} from './groups/group-dialog/group-dialog.component
 import {GroupComponent} from './groups/group/group.component';
 import {InvitationDialogComponent} from './groups/invitation-dialog/invitation-dialog.component';
 import {GroupJoinComponent} from './groups/group-join/group-join.component';
+import {MembersComponent} from './groups/members/members.component';
+import { BillsComponent } from './groups/bills/bills.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +31,8 @@ import {GroupJoinComponent} from './groups/group-join/group-join.component';
         GroupComponent,
         InvitationDialogComponent,
         GroupJoinComponent,
+        MembersComponent,
+        BillsComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,31 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupsService} from '../../services/groups.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DialogService} from '../../services/dialog.service';
-
-const ELEMENT_DATA = [
-    {name: 'Jan Kowalski', bankAccount: '45521455214552145521455218'},
-    {name: 'Jan Kowalski', bankAccount: '45521455214552145521455218'},
-    {name: 'Jan Kowalski', bankAccount: '45521455214552145521455218'},
-    {name: 'Jan Kowalski', bankAccount: '45521455214552145521455218'},
-];
 
 @Component({
     selector: 'app-group',
     templateUrl: './group.component.html',
-    styleUrls: ['./group.component.scss']
+    styleUrls: ['./group.component.scss'],
 })
 
 export class GroupComponent implements OnInit {
     group;
-    dataSource;
-    displayedColumns: string[] = ['username', 'bank_account_number', 'action'];
-    members = [];
 
     constructor(private groupsService: GroupsService,
                 private route: ActivatedRoute,
-                private router: Router,
-                private dialogService: DialogService) {
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -38,17 +26,5 @@ export class GroupComponent implements OnInit {
                 this.router.navigate(['/']);
             }
         );
-        this.groupsService.getMembers(id).subscribe(
-            (res) => {
-                this.members = res.members;
-                this.dataSource = this.members;
-            },
-            (err) => {
-            }
-        );
-    }
-
-    public openGroupDialog() {
-        this.dialogService.groupInvitationDialog(this.route.snapshot.paramMap.get('id'));
     }
 }

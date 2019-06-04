@@ -1,0 +1,94 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>Bills</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <table mat-table *ngIf="bills.length" [dataSource]="dataSource" class="table">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element" class="name"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="created by">
+                <th mat-header-cell *matHeaderCellDef>Created by</th>
+                <td mat-cell *matCellDef="let element" class="name">
+                    <span>{{element.user.username}} </span>
+                    <span class="bank-number">{{element.user.bank_account_number}}</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="value">
+                <th mat-header-cell *matHeaderCellDef>Value</th>
+                <td mat-cell *matCellDef="let element" class="name"> {{element.value}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="you owe">
+                <th mat-header-cell *matHeaderCellDef>You owe</th>
+                <td mat-cell *matCellDef="let element" class="name">
+                    <span *ngIf="element.debtors.length">{{element.debtors[0].value}}</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let element" class="name">
+                    <mat-chip-list aria-label="Fish selection">
+                        <mat-chip *ngIf="!element.debtors.length; else debt">n/a</mat-chip>
+                        <ng-template #debt>
+                            <mat-chip *ngIf="element.debtors[0].paid; else notPaid" color="primary" selected>Paid
+                            </mat-chip>
+                            <ng-template #notPaid>
+                                <mat-chip>Not paid</mat-chip>
+                            </ng-template>
+                        </ng-template>
+                    </mat-chip-list>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let element" class="name"> {{element.createdAt.slice(0, 10)}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" class="button-cell">
+                    <button mat-raised-button color="primary" *ngIf="element.debtors.length && !element.debtors[0].paid"
+                            (click)="payBill(element._id)">Set as paid
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+
+    <mat-card-actions class="actions">
+        <button mat-button *ngIf="!billCreation" (click)="billCreation = true" class="secondary-button">Create bill
+        </button>
+        <button mat-button *ngIf="billCreation" (click)="billCreation = false">Cancel</button>
+    </mat-card-actions>
+</mat-card>
+
+<mat-card class="card" *ngIf="billCreation">
+    <mat-card-content>
+        <form [formGroup]="billData" (ngSubmit)="saveBill()">
+
+            <mat-form-field class="input-wrapper">
+                <input matInput placeholder="Name" formControlName="name" required>
+            </mat-form-field>
+
+
+            <mat-form-field class="input-wrapper">
+                <input matInput placeholder="Value" formControlName="value" maxlength="10"
+                       required>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" [disabled]="!billData.valid" type="submit" class="submit-button">
+                Submit
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -10,7 +10,7 @@ import {
     MatSelectModule,
     MatInputModule,
     MatCardModule,
-    MatProgressSpinnerModule, MatSnackBarModule, MatDialogModule, MatGridListModule, MatListModule, MatTableModule,
+    MatProgressSpinnerModule, MatSnackBarModule, MatDialogModule, MatGridListModule, MatListModule, MatTableModule, MatChipsModule,
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -31,7 +31,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         BrowserAnimationsModule,
         MatGridListModule,
         MatListModule,
-        MatTableModule
+        MatTableModule,
+        MatChipsModule,
     ]
 })
 export class MaterialModule {

@@ -1,40 +1,44 @@
 @import "../../../styles";
 
-.card {
-  margin: 0 20%;
+.content {
+  display: flex;
+}
+
+.title {
+  margin: 10px;
+  text-transform: uppercase;
+  color: white;
+  font: 20px Arial, sans-serif;
+}
+
+.fill {
+  flex: 1;
 }
 
 .spacer {
-  height: 50px;
+  height: 25px;
 }
 
-.table {
-  width: 100% !important;
+.row {
+  display: flex;
 }
 
-.member {
-  font-weight: bold;
-}
-
-.bank-number {
-  color: #1680b7;
-  font-weight: bold;
-}
-
-.button-cell {
-  text-align: right;
-}
-
-.actions {
-  text-align: right;
+.button-header {
+  padding-top: 10px;
 
   button {
     background: $primaryColor;
     color: white;
+    height: 40px;
   }
 }
 
 .container {
   background: linear-gradient(to right, $primaryColor, $secondaryColor);
-  height: 90vh;
+  min-height: 90vh;
+  padding-bottom: .5vh;
+}
+
+.single-component {
+  width: 50% !important;
 }
