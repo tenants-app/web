@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="spacer"></div>
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-subtitle>Apartment</mat-card-subtitle>
+            <mat-card-title>New shopping list</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="content">
+            <div class="left-segment">
+                <div>
+                    <mat-form-field class="input-wrapper">
+                        <input matInput placeholder="List name" [formControl]="name" maxlength="30" required>
+                    </mat-form-field>
+                </div>
+                <table class="table" *ngIf="items.length">
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr *ngFor="let item of items; let i = index" [attr.data-index]="i">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>
+                            <button mat-raised-button color="primary" (click)="removeItem(i)" class="primary-button">
+                                Remove
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="right-segment">
+                <form [formGroup]="item">
+                    <div>
+                        <mat-form-field class="input-wrapper">
+                            <input matInput placeholder="Item name" formControlName="name" maxlength="30" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="input-wrapper">
+                            <input matInput placeholder="Price" formControlName="price" maxlength="30" required>
+                        </mat-form-field>
+                    </div>
+
+                    <button mat-button (click)="addItem()" [disabled]="!item.valid">Add shopping list</button>
+                </form>
+            </div>
+        </mat-card-content>
+
+        <mat-card-footer class="actions">
+            <button mat-button (click)="submitList()" [disabled]="!name || !items.length">Add shopping list
+            </button>
+        </mat-card-footer>
+    </mat-card>
+</div>

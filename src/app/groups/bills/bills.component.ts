@@ -35,8 +35,6 @@ export class BillsComponent implements OnInit {
                 this.bills = res.bills;
                 this.dataSource = this.bills;
             },
-            (err) => {
-            }
         );
     }
 

@@ -19,7 +19,9 @@ import {GroupComponent} from './groups/group/group.component';
 import {InvitationDialogComponent} from './groups/invitation-dialog/invitation-dialog.component';
 import {GroupJoinComponent} from './groups/group-join/group-join.component';
 import {MembersComponent} from './groups/members/members.component';
-import { BillsComponent } from './groups/bills/bills.component';
+import {BillsComponent} from './groups/bills/bills.component';
+import { ShoppingComponent } from './groups/shopping/shopping.component';
+import { CreateShoppingListComponent } from './groups/create-shopping-list/create-shopping-list.component';
 
 @NgModule({
     declarations: [
@@ -33,6 +35,8 @@ import { BillsComponent } from './groups/bills/bills.component';
         GroupJoinComponent,
         MembersComponent,
         BillsComponent,
+        ShoppingComponent,
+        CreateShoppingListComponent,
     ],
     imports: [
         BrowserModule,

@@ -7,6 +7,7 @@ import {AuthGuard} from './guards/auth.guard';
 import {GuestGuard} from './guards/guest.guard';
 import {GroupComponent} from './groups/group/group.component';
 import {GroupJoinComponent} from './groups/group-join/group-join.component';
+import {CreateShoppingListComponent} from './groups/create-shopping-list/create-shopping-list.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent, canActivate: [GuestGuard]},
@@ -14,6 +15,7 @@ const routes: Routes = [
     {path: 'groups', component: GroupsComponent, canActivate: [AuthGuard]},
     {path: 'group/:id', component: GroupComponent, canActivate: [AuthGuard]},
     {path: 'group/join/:token', component: GroupJoinComponent},
+    {path: 'group/:id/shopping', component: CreateShoppingListComponent, canActivate: [AuthGuard]},
     {path: '**', redirectTo: '/groups'}
 ];
 
