@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="spacer"></div>
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-subtitle>Apartment</mat-card-subtitle>
+            <mat-card-title>Duties</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="content">
+            <div class="left-segment">
+                <form [formGroup]="dutyData" (ngSubmit)="addDuty()">
+                    <mat-form-field class="input-wrapper">
+                        <mat-label>Member</mat-label>
+                        <mat-select formControlName="member">
+                            <mat-option *ngFor="let member of members" [value]="member">
+                                {{member.username}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="input-wrapper">
+                        <input matInput type="text" placeholder="Duty" formControlName="duty" required>
+                    </mat-form-field>
+
+                    <div class="button-wrapper">
+                        <button mat-raised-button color="primary" [disabled]="!dutyData.valid" type="submit">Add
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="right-segment">
+                <table class="table" *ngIf="duties.length">
+                    <tr>
+                        <th>Member</th>
+                        <th>Duty</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr *ngFor="let duty of duties; let i = index" [attr.data-index]="i">
+                        <td>{{ duty.member.username }}</td>
+                        <td>{{ duty.duty }}</td>
+                        <td>
+                            <button mat-raised-button color="primary" (click)="removeItem(i)" class="primary-button">
+                                Remove
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </mat-card-content>
+
+        <mat-card-footer class="actions">
+            <button mat-button (click)="submit()">Save
+            </button>
+        </mat-card-footer>
+    </mat-card>
+</div>

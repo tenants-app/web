@@ -22,6 +22,8 @@ import {MembersComponent} from './groups/members/members.component';
 import {BillsComponent} from './groups/bills/bills.component';
 import { ShoppingComponent } from './groups/shopping/shopping.component';
 import { CreateShoppingListComponent } from './groups/create-shopping-list/create-shopping-list.component';
+import { DutiesComponent } from './groups/duties/duties.component';
+import { DutiesEditionComponent } from './groups/duties-edition/duties-edition.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +39,8 @@ import { CreateShoppingListComponent } from './groups/create-shopping-list/creat
         BillsComponent,
         ShoppingComponent,
         CreateShoppingListComponent,
+        DutiesComponent,
+        DutiesEditionComponent,
     ],
     imports: [
         BrowserModule,

@@ -11,11 +11,11 @@ export class ShoppingService {
     }
 
     public getShoppingList(groupId) {
-        return this.apiService.get('/groups/' + groupId + '/shopping');
+        return this.apiService.get('/groups/' + groupId + '/shoppingLists');
     }
 
     public postShoppingList(groupId, listName, items) {
         console.log(items);
-        return this.apiService.post('/groups/' + groupId + '/shopping', {items: items, name: listName});
+        return this.apiService.post('/groups/' + groupId + '/shoppingLists', {items: items, name: listName});
     }
 }
