@@ -1,0 +1,58 @@
+@import "../../../../styles";
+
+.content {
+  display: flex;
+}
+
+.title {
+  margin: 10px;
+  text-transform: uppercase;
+  color: white;
+  font: 20px Arial, sans-serif;
+}
+
+.tab {
+  background: #ffffff !important;
+  margin: 20px;
+}
+
+.fill {
+  flex: 1;
+}
+
+.spacer {
+  height: 25px;
+}
+
+.row {
+  display: flex;
+}
+
+.button-header {
+  padding-top: 10px;
+
+  button {
+    background: $primaryColor;
+    color: white;
+    height: 40px;
+  }
+}
+
+.container {
+  background: linear-gradient(to right, $primaryColor, $secondaryColor);
+  min-height: 90vh;
+  padding-bottom: .5vh;
+}
+
+.content {
+  background: linear-gradient(to right, $primaryColor, $secondaryColor);
+  width: 100% !important;
+}
+
+.wide {
+  width: 100% !important;
+}
+
+.single-component {
+  width: 50% !important;
+}

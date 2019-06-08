@@ -1,0 +1,31 @@
+@import "../../../../styles";
+
+.table {
+  width: 100% !important;
+}
+
+.card {
+  margin: 10px;
+}
+
+.member {
+  font-weight: bold;
+}
+
+.bank-number {
+  color: #1680b7;
+  font-weight: bold;
+}
+
+.button-cell {
+  text-align: right;
+}
+
+.actions {
+  text-align: right;
+
+  button {
+    background: $primaryColor;
+    color: white;
+  }
+}

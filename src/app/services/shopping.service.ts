@@ -15,7 +15,6 @@ export class ShoppingService {
     }
 
     public postShoppingList(groupId, listName, items) {
-        console.log(items);
-        return this.apiService.post('/groups/' + groupId + '/shoppingLists', {items: items, name: listName});
+        return this.apiService.post('/groups/' + groupId + '/shoppingLists', {items, name: listName});
     }
 }

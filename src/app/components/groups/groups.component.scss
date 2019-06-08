@@ -1,0 +1,67 @@
+@import "../../../styles";
+
+.header {
+  padding: 50px 15px;
+  background: linear-gradient(to right, rgba(19, 185, 119, 0.6), rgba(46, 207, 202, 0.4));
+
+  h1 {
+    display: inline-block;
+    margin: 0;
+    color: white;
+  }
+
+  .new-button {
+    display: inline-block;
+    float: right;
+  }
+}
+
+.container {
+  padding-bottom: 25px;
+}
+
+.primary-button {
+  background: $primaryColor;
+  color: white;
+}
+
+.primary-button:hover {
+  background: $secondaryColor;
+}
+
+.secondary-button {
+  background: $secondaryColor;
+  color: white;
+}
+
+.card {
+  width: 28.5% !important;
+  display: inline-block;
+  margin: 1%;
+
+  .letter-avatar {
+    text-transform: uppercase;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    padding: 5px;
+    background: $primaryColor;
+    color: white;
+    text-align: center;
+    font: 28px Arial, sans-serif;
+  }
+}
+
+@media screen and (max-width: 1144px) {
+  .card {
+    width: 40% !important;
+    margin: 0.75%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    width: 100% !important;
+    margin: 0;
+  }
+}

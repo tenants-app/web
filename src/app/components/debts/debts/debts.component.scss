@@ -1,0 +1,33 @@
+@import "../../../../styles";
+
+.card {
+  margin: 10px 0;
+}
+
+.secondary-button {
+  background: $secondaryColor;
+  color: white;
+}
+
+.actions {
+  text-align: right;
+}
+
+.input-wrapper {
+  margin: 10px !important;
+}
+
+table {
+  width: 100% !important;
+}
+
+.bank-number {
+  color: #1680b7;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.submit-button {
+  margin-top: 15px;
+  float: right;
+}
