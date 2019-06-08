@@ -1,57 +1,58 @@
 <div class="container">
     <div class="spacer"></div>
-    <mat-card class="card">
-        <mat-card-header>
-            <mat-card-subtitle>Apartment</mat-card-subtitle>
-            <mat-card-title>Duties</mat-card-title>
-        </mat-card-header>
-
-        <mat-card-content class="content">
-            <div class="left-segment">
-                <form [formGroup]="dutyData" (ngSubmit)="addDuty()">
+    <div class="cards">
+        <mat-card class="card left">
+            <mat-card-header>
+                <mat-card-subtitle>Apartment</mat-card-subtitle>
+                <mat-card-title>Duties</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <div>
                     <mat-form-field class="input-wrapper">
-                        <mat-label>Member</mat-label>
-                        <mat-select formControlName="member">
-                            <mat-option *ngFor="let member of members" [value]="member">
-                                {{member.username}}
-                            </mat-option>
-                        </mat-select>
+                        <input matInput type="number" placeholder="Cycle length" [formControl]="length" maxlength="1"
+                               required>
                     </mat-form-field>
-
-                    <mat-form-field class="input-wrapper">
-                        <input matInput type="text" placeholder="Duty" formControlName="duty" required>
-                    </mat-form-field>
-
-                    <div class="button-wrapper">
-                        <button mat-raised-button color="primary" [disabled]="!dutyData.valid" type="submit">Add
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="right-segment">
-                <table class="table" *ngIf="duties.length">
+                </div>
+            </mat-card-content>
+            <mat-card-footer class="actions">
+                <button mat-raised-button color="primary" (click)="submit()"
+                        [disabled]="!length.value || !members.length">Save
+                </button>
+            </mat-card-footer>
+        </mat-card>
+        <mat-card class="card right">
+            <mat-card-header>
+                <mat-card-subtitle>Duties</mat-card-subtitle>
+                <mat-card-title>Order</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="content">
+                <table class="table" *ngIf="members.length">
                     <tr>
+                        <th>#</th>
                         <th>Member</th>
-                        <th>Duty</th>
-                        <th>Actions</th>
+                        <th>Swap</th>
                     </tr>
-                    <tr *ngFor="let duty of duties; let i = index" [attr.data-index]="i">
-                        <td>{{ duty.member.username }}</td>
-                        <td>{{ duty.duty }}</td>
+                    <tr *ngFor="let member of members; let i = index" [attr.data-index]="i">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ member.username }}</td>
                         <td>
-                            <button mat-raised-button color="primary" (click)="removeItem(i)" class="primary-button">
-                                Remove
-                            </button>
+                            <mat-chip-list>
+                                <mat-chip selected [disabled]="i === members.length-1" class="secondary-button"
+                                          (click)="moveDown(i)">
+                                    <mat-icon class="icon" aria-hidden="false" aria-label="icon">
+                                        keyboard_arrow_down
+                                    </mat-icon>
+                                </mat-chip>
+                                <mat-chip selected [disabled]="i === 0" class="primary-button" (click)="moveUp(i)">
+                                    <mat-icon class="icon" aria-hidden="false" aria-label="icon">
+                                        keyboard_arrow_up
+                                    </mat-icon>
+                                </mat-chip>
+                            </mat-chip-list>
                         </td>
                     </tr>
                 </table>
-            </div>
-
-        </mat-card-content>
-
-        <mat-card-footer class="actions">
-            <button mat-button (click)="submit()">Save
-            </button>
-        </mat-card-footer>
-    </mat-card>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

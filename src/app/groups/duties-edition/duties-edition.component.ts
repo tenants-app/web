@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupsService} from '../../services/groups.service';
-import {ActivatedRoute} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl} from '@angular/forms';
 import {DutiesService} from '../../services/duties.service';
+import {SnackBarService} from '../../services/snack-bar.service';
 
 @Component({
     selector: 'app-duties-edition',
@@ -11,16 +12,14 @@ import {DutiesService} from '../../services/duties.service';
 })
 export class DutiesEditionComponent implements OnInit {
     id = this.route.snapshot.paramMap.get('id');
-    dutyData = new FormGroup({
-        member: new FormControl('', Validators.required),
-        duty: new FormControl('', [Validators.minLength(3), Validators.maxLength(30)]),
-    });
+    length = new FormControl('');
     members = [];
-    duties = [];
 
     constructor(private groupsService: GroupsService,
-                private dutiesSerivce: DutiesService,
-                private route: ActivatedRoute) {
+                private dutiesService: DutiesService,
+                private route: ActivatedRoute,
+                private router: Router,
+                private snackBar: SnackBarService) {
     }
 
     ngOnInit() {
@@ -31,19 +30,34 @@ export class DutiesEditionComponent implements OnInit {
         );
     }
 
-    addDuty() {
-        this.duties.push(this.dutyData.value);
-    }
-
-    removeItem(index) {
-        this.duties = this.duties.slice(0, index).concat(this.duties.slice(index + 1, this.duties.length));
-    }
 
     submit() {
-        this.dutiesSerivce.postDuties(this.id, this.duties).subscribe(
-            (res) => {
-                console.log(res);
-            },
-        );
+        if (Number.isInteger(this.length.value)) {
+            this.dutiesService.postDuties(this.id, this.length.value, this.members).subscribe((res) => {
+                this.snackBar.show('Duties were saved');
+                this.router.navigate(['/group/' + this.id]);
+            }, (err) => {
+                this.snackBar.show('Could not save duties');
+                // this.router.navigate(['/group/' + this.id]);
+            });
+        } else {
+            this.snackBar.show('Cycle length must be integer');
+        }
+    }
+
+    moveUp(index) {
+        if (index !== 0) {
+            const firstElement = this.members[index];
+            this.members[index] = this.members[index - 1];
+            this.members[index - 1] = firstElement;
+        }
+    }
+
+    moveDown(index) {
+        if (index !== this.members.length - 1) {
+            const firstElement = this.members[index];
+            this.members[index] = this.members[index + 1];
+            this.members[index + 1] = firstElement;
+        }
     }
 }

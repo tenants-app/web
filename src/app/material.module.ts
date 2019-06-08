@@ -17,7 +17,7 @@ import {
     MatListModule,
     MatTableModule,
     MatChipsModule,
-    MatAutocompleteModule,
+    MatAutocompleteModule, MatTabsModule,
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -40,7 +40,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         MatListModule,
         MatTableModule,
         MatChipsModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatTabsModule
     ]
 })
 export class MaterialModule {

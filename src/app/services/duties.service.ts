@@ -13,8 +13,7 @@ export class DutiesService {
         return this.apiService.get('/groups/' + groupId + '/duties');
     }
 
-    public postDuties(groupId, duties) {
-        return this.apiService.post('/groups/' + groupId + '/duties', {duties: duties});
+    public postDuties(groupId, length, members) {
+        return this.apiService.post('/groups/' + groupId + '/duties', {length, order: members});
     }
-
 }

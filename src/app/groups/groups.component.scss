@@ -1,11 +1,13 @@
 @import "../../styles";
 
 .header {
-  padding: 50px 10px;
+  padding: 50px 15px;
+  background: linear-gradient(to right, rgba(19, 185, 119, 0.6), rgba(46, 207, 202, 0.4));
 
   h1 {
     display: inline-block;
     margin: 0;
+    color: white;
   }
 
   .new-button {

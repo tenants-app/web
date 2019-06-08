@@ -8,10 +8,26 @@
             <div class="single-component">
                 <app-members></app-members>
             </div>
+            <div class="single-component">
+                <app-duties></app-duties>
+            </div>
         </div>
-        <app-bills></app-bills>
-        <app-shopping></app-shopping>
-        <app-duties></app-duties>
+
+        <mat-tab-group mat-align-tabs="center" class="tab">
+            <mat-tab label="Debts">
+                <div class="content">Content 1</div>
+            </mat-tab>
+            <mat-tab label="Bills">
+                <div class="content">
+                    <app-bills class="wide"></app-bills>
+                </div>
+            </mat-tab>
+            <mat-tab label="Shopping">
+                <div class="content">
+                    <app-shopping class="wide"></app-shopping>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
     </div>
 </div>
 

@@ -18,28 +18,37 @@
   text-align: right;
 }
 
-.primary-button {
-  background: $primaryColor;
-  color: white;
-}
-
-.content {
+.cards {
   display: flex;
-  padding: 15px !important;
-  .left-segment {
-    display: inline-block;
-    width: 30%;
-    margin-right: 25px;
+
+  .left {
+    width: 40%;
+
+    button {
+      margin-right: 25px;
+    }
+
+    .input-wrapper {
+      margin-left: 15px !important;
+    }
   }
 
-  .right-segment {
-    display: inline-block;
-    width: 70%;
+  .right {
+    width: 60%;
   }
 }
 
-input, .input-wrapper {
-  width: 100% !important;
+.primary-button, .secondary-button {
+  color: white;
+  cursor: pointer;
+}
+
+.primary-button {
+  background: $primaryColor !important;
+}
+
+.secondary-button {
+  background: $secondaryColor !important;
 }
 
 .table {

@@ -11,6 +11,11 @@
   font: 20px Arial, sans-serif;
 }
 
+.tab {
+  background: #ffffff !important;
+  margin: 20px;
+}
+
 .fill {
   flex: 1;
 }
@@ -37,6 +42,15 @@
   background: linear-gradient(to right, $primaryColor, $secondaryColor);
   min-height: 90vh;
   padding-bottom: .5vh;
+}
+
+.content {
+  background: linear-gradient(to right, $primaryColor, $secondaryColor);
+  width: 100% !important;
+}
+
+.wide {
+  width: 100% !important;
 }
 
 .single-component {
