@@ -53,6 +53,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <p class="no-data" *ngIf="!debts.length">No debts to display</p>
     </mat-card-content>
 
     <mat-card-actions class="actions">
@@ -69,7 +70,6 @@
             <mat-form-field class="input-wrapper">
                 <input matInput placeholder="Name" formControlName="name" required>
             </mat-form-field>
-
 
             <mat-form-field class="input-wrapper">
                 <input matInput placeholder="Value" formControlName="value" maxlength="10"

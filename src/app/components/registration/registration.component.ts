@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
@@ -7,8 +7,8 @@ import {AuthService} from '../../services/auth.service';
     templateUrl: './registration.component.html',
     styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
-    userData = new FormGroup({
+export class RegistrationComponent {
+    public userData = new FormGroup({
         username: new FormControl('', [Validators.minLength(3), Validators.maxLength(30)]),
         email: new FormControl('', [Validators.required, Validators.email]),
         bank_account_number: new FormControl('', [Validators.minLength(26), Validators.maxLength(26)]),
@@ -17,9 +17,6 @@ export class RegistrationComponent implements OnInit {
     });
 
     constructor(private authService: AuthService) {
-    }
-
-    ngOnInit() {
     }
 
     public register(): void {

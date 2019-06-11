@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
     styleUrls: ['./groups.component.scss']
 })
 export class GroupsComponent implements OnInit {
-    groups$: Observable<object>;
+    public groups$: Observable<object>;
 
     constructor(private groupsService: GroupsService, private dialogService: DialogService) {
     }

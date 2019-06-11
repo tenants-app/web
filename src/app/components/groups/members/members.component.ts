@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {GroupsService} from '../../../services/groups.service';
 import {DialogService} from '../../../services/dialog.service';
+import {User} from '../../../interfaces/IUser';
 
 @Component({
     selector: 'app-members',
@@ -9,9 +10,8 @@ import {DialogService} from '../../../services/dialog.service';
     styleUrls: ['./members.component.scss']
 })
 export class MembersComponent implements OnInit {
-    dataSource;
-    displayedColumns: string[] = ['username', 'bank_account_number', 'action'];
-    members = [];
+    public displayedColumns: string[] = ['username', 'bank_account_number', 'action'];
+    public members: User[] = [];
 
     constructor(private groupsService: GroupsService,
                 private route: ActivatedRoute,
@@ -23,7 +23,6 @@ export class MembersComponent implements OnInit {
         this.groupsService.getMembers(id).subscribe(
             (res) => {
                 this.members = res.members;
-                this.dataSource = this.members;
             },
         );
     }

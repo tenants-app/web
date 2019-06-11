@@ -53,5 +53,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <p class="no-data" *ngIf="!debts.length">No loans to display</p>
   </mat-card-content>
 </mat-card>

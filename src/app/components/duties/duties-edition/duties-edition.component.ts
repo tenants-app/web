@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {DutiesService} from '../../../services/duties.service';
 import {SnackBarService} from '../../../services/snack-bar.service';
+import {User} from '../../../interfaces/IUser';
 
 @Component({
     selector: 'app-duties-edition',
@@ -11,9 +12,9 @@ import {SnackBarService} from '../../../services/snack-bar.service';
     styleUrls: ['./duties-edition.component.scss']
 })
 export class DutiesEditionComponent implements OnInit {
-    id = this.route.snapshot.paramMap.get('id');
-    length = new FormControl('');
-    members = [];
+    private id: string = this.route.snapshot.paramMap.get('id');
+    public length = new FormControl('');
+    public members: User[] = [];
 
     constructor(private groupsService: GroupsService,
                 private dutiesService: DutiesService,

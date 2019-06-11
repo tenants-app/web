@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
@@ -8,8 +8,8 @@ import {Router} from '@angular/router';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-    userData = new FormGroup({
+export class LoginComponent {
+    public userData = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.minLength(3), Validators.maxLength(30)]),
     });
@@ -18,11 +18,9 @@ export class LoginComponent implements OnInit {
                 private router: Router) {
     }
 
-    ngOnInit() {
-    }
-
     public login() {
         this.authService.login(this.userData.value);
         this.router.navigate(['/']);
     }
+
 }

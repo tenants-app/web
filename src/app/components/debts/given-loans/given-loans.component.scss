@@ -1,7 +1,21 @@
+@import "../../../../styles";
+
 .card {
   margin: 10px 0;
 }
 
 table {
   width: 100% !important;
+}
+
+.no-data {
+  margin: 15px;
+  padding-top: 25px;
+  color: $standardGrey;
+}
+
+.bank-number {
+  color: #1680b7;
+  font-weight: bold;
+  padding-left: 10px;
 }

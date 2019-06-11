@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
     styleUrls: ['./given-loans.component.scss']
 })
 export class GivenLoansComponent implements OnInit {
-    id = this.route.snapshot.paramMap.get('id');
+    private id: string = this.route.snapshot.paramMap.get('id');
     debts = [];
     members = [];
     displayedColumns: string[] = ['name', 'created by', 'value', 'status', 'date', 'actions'];

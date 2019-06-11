@@ -11,8 +11,7 @@ import {SnackBarService} from '../../../services/snack-bar.service';
 })
 export class GroupDialogComponent {
     public loadingSpinner = false;
-
-    groupForm = new FormGroup({
+    public groupForm = new FormGroup({
         name: new FormControl('', [Validators.required]),
     });
 

@@ -8,8 +8,7 @@ import {ActivatedRoute} from '@angular/router';
     styleUrls: ['./shopping.component.scss']
 })
 export class ShoppingComponent implements OnInit {
-
-    id = this.route.snapshot.paramMap.get('id');
+    protected id: string = this.route.snapshot.paramMap.get('id');
 
     constructor(private shoppingService: ShoppingService,
                 private route: ActivatedRoute) {

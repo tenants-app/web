@@ -11,7 +11,7 @@ import {SnackBarService} from '../../../services/snack-bar.service';
     styleUrls: ['./group-join.component.scss']
 })
 export class GroupJoinComponent implements OnInit {
-    isLoggedIn$: Observable<boolean>;
+    public isLoggedIn$: Observable<boolean>;
 
     constructor(private authService: AuthService,
                 private groupsService: GroupsService,

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ShoppingService} from '../../../services/shopping.service';
 import {ActivatedRoute} from '@angular/router';
@@ -8,20 +8,17 @@ import {ActivatedRoute} from '@angular/router';
     templateUrl: './create-shopping-list.component.html',
     styleUrls: ['./create-shopping-list.component.scss']
 })
-export class CreateShoppingListComponent implements OnInit {
-    name = new FormControl('', [Validators.minLength(3), Validators.maxLength(30)]);
+export class CreateShoppingListComponent {
+    public name = new FormControl('', [Validators.minLength(3), Validators.maxLength(30)]);
 
-    item = new FormGroup({
+    public item = new FormGroup({
         name: new FormControl('', [Validators.minLength(1), Validators.maxLength(30)]),
         price: new FormControl('', [Validators.required]),
     });
-    items = [];
+    public items = [];
 
     constructor(private shoppingService: ShoppingService,
                 private route: ActivatedRoute) {
-    }
-
-    ngOnInit() {
     }
 
     submitList() {

@@ -4,6 +4,8 @@ import {DebtsService} from '../../../services/debts.service';
 import {GroupsService} from '../../../services/groups.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SnackBarService} from '../../../services/snack-bar.service';
+import {Debt} from '../../../interfaces/IDebt';
+import {User} from '../../../interfaces/IUser';
 
 @Component({
     selector: 'app-debts',
@@ -11,12 +13,12 @@ import {SnackBarService} from '../../../services/snack-bar.service';
     styleUrls: ['./debts.component.scss']
 })
 export class DebtsComponent implements OnInit {
-    id = this.route.snapshot.paramMap.get('id');
-    loanCreation = false;
-    debts = [];
-    members = [];
-    displayedColumns: string[] = ['name', 'created by', 'value', 'status', 'date', 'actions'];
-    loanData = new FormGroup({
+    private id: string = this.route.snapshot.paramMap.get('id');
+    public loanCreation = false;
+    public debts: Debt[] = [];
+    public members: User[] = [];
+    public displayedColumns: string[] = ['name', 'created by', 'value', 'status', 'date', 'actions'];
+    public loanData = new FormGroup({
         name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
         value: new FormControl('', [Validators.minLength(1), Validators.maxLength(10)]),
         debtor: new FormControl('', [Validators.required]),

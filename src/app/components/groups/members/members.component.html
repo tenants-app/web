@@ -3,7 +3,7 @@
         <mat-card-title>Members</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <table mat-table *ngIf="members.length" [dataSource]="dataSource" class="table">
+        <table mat-table *ngIf="members.length" [dataSource]="members" class="table">
             <ng-container matColumnDef="username">
                 <th mat-header-cell *matHeaderCellDef> Name</th>
                 <td mat-cell *matCellDef="let element" class="member"> {{element.username}} </td>

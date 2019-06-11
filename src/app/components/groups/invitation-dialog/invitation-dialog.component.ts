@@ -1,15 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {GroupsService} from '../../../services/groups.service';
 import {MatDialogRef} from '@angular/material';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-invitation-dialog',
     templateUrl: './invitation-dialog.component.html',
     styleUrls: ['./invitation-dialog.component.scss']
 })
-export class InvitationDialogComponent implements OnInit {
+export class InvitationDialogComponent {
     public loadingSpinner = false;
     public link = '';
 
@@ -18,13 +17,8 @@ export class InvitationDialogComponent implements OnInit {
     });
 
     constructor(private groupsService: GroupsService,
-                private route: ActivatedRoute,
                 public dialogRef: MatDialogRef<InvitationDialogComponent>) {
     }
-
-    ngOnInit() {
-    }
-
 
     onCreation() {
         if (!!this.groupForm.invalid) {
