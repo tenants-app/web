@@ -1,0 +1,49 @@
+@import "../../../styles";
+
+.card {
+  margin: 10px;
+}
+
+.container {
+  background: linear-gradient(to right, $primaryColor, $secondaryColor);
+  min-height: 90vh;
+  padding-bottom: .5vh;
+}
+
+.spacer {
+  height: 25px;
+}
+
+.actions {
+  text-align: right;
+}
+
+.primary-button {
+  background: $primaryColor !important;
+  color: white !important;
+}
+
+.secondary-button {
+  background: $secondaryColor !important;
+  color: white !important;
+}
+
+.bank-number {
+  color: #1680b7;
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 1rem;
+}
+
+.email {
+  color: $primaryColor;
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 1rem;
+}
+
+.subtitle {
+  padding-top: 25px;
+  padding-left: 15px;
+}
+

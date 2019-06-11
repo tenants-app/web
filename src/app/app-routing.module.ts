@@ -10,11 +10,13 @@ import {GroupJoinComponent} from './components/groups/group-join/group-join.comp
 import {CreateShoppingListComponent} from './components/shopping/create-shopping-list/create-shopping-list.component';
 import {DutiesEditionComponent} from './components/duties/duties-edition/duties-edition.component';
 import {ShoppingDetailsComponent} from './components/shopping/shopping-details/shopping-details.component';
+import {ProfileComponent} from './components/profile/profile.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent, canActivate: [GuestGuard]},
     {path: 'register', component: RegistrationComponent, canActivate: [GuestGuard]},
     {path: 'groups', component: GroupsComponent, canActivate: [AuthGuard]},
+    {path: 'group/:id/user/:userId', component: ProfileComponent, canActivate: [AuthGuard]},
     {path: 'group/:id', component: GroupComponent, canActivate: [AuthGuard]},
     {path: 'group/join/:token', component: GroupJoinComponent},
     {path: 'group/:id/shopping', component: CreateShoppingListComponent, canActivate: [AuthGuard]},

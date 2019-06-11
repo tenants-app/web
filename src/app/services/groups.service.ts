@@ -28,12 +28,16 @@ export class GroupsService {
         return this.apiService.get('/groups/' + id + '/members');
     }
 
+    public getUser(id: string, userId: string): Observable<any> {
+        return this.apiService.get('/groups/' + id + '/members/' + userId);
+    }
+
     public createGroup(name: string): Observable<any> {
         return this.apiService.post('/groups/new', {name});
     }
 
     public joinGroup(token: string): Observable<any> {
-        return this.apiService.get('/activate_member/' + token);
+        return this.apiService.get('/activate_members/' + token);
     }
 
     public createInvitation(email: string, groupId: string): Observable<any> {
@@ -42,5 +46,9 @@ export class GroupsService {
             group_id: groupId
         };
         return this.apiService.post('/groups/generate_member_link', data);
+    }
+
+    public sendInvitation(email: string, link: string): Observable<any> {
+        return this.apiService.post('/groups/send_member_link', {email, link});
     }
 }

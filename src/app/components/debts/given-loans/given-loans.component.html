@@ -1,59 +1,62 @@
 <mat-card class="card">
-  <mat-card-header>
-    <mat-card-title>Given loans</mat-card-title>
-  </mat-card-header>
+    <mat-card-header>
+        <mat-card-title>Given loans</mat-card-title>
+    </mat-card-header>
 
-  <mat-card-content>
-    <table mat-table *ngIf="debts.length" [dataSource]="debts" class="table">
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let element" class="name"> {{element.name}} </td>
-      </ng-container>
+    <mat-card-content>
+        <table mat-table *ngIf="debts.length; else loader" [dataSource]="debts" class="table">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element" class="name"> {{element.name}} </td>
+            </ng-container>
 
-      <ng-container matColumnDef="created by">
-        <th mat-header-cell *matHeaderCellDef>Created by</th>
-        <td mat-cell *matCellDef="let element" class="name">
-          <span>{{element.holder.username}} </span>
-          <span class="bank-number">{{element.holder.bank_account_number}}</span>
-        </td>
-      </ng-container>
+            <ng-container matColumnDef="created by">
+                <th mat-header-cell *matHeaderCellDef>Created by</th>
+                <td mat-cell *matCellDef="let element" class="name">
+                    <span>{{element.holder.username}} </span>
+                    <span class="bank-number">{{element.holder.bank_account_number}}</span>
+                </td>
+            </ng-container>
 
-      <ng-container matColumnDef="value">
-        <th mat-header-cell *matHeaderCellDef>Value</th>
-        <td mat-cell *matCellDef="let element" class="name"> {{element.value}} </td>
-      </ng-container>
+            <ng-container matColumnDef="value">
+                <th mat-header-cell *matHeaderCellDef>Value</th>
+                <td mat-cell *matCellDef="let element" class="name"> {{element.value}} </td>
+            </ng-container>
 
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let element" class="name">
-          <mat-chip-list aria-label="Fish selection">
-            <mat-chip *ngIf="element.paid; else notPaid" color="primary" selected>Paid
-            </mat-chip>
-            <ng-template #notPaid>
-              <mat-chip>Not paid</mat-chip>
-            </ng-template>
-          </mat-chip-list>
-        </td>
-      </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let element" class="name">
+                    <mat-chip-list aria-label="Fish selection">
+                        <mat-chip *ngIf="element.paid; else notPaid" color="primary" selected>Paid
+                        </mat-chip>
+                        <ng-template #notPaid>
+                            <mat-chip>Not paid</mat-chip>
+                        </ng-template>
+                    </mat-chip-list>
+                </td>
+            </ng-container>
 
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef>Date</th>
-        <td mat-cell *matCellDef="let element" class="name"> {{element.createdAt.slice(0, 10)}} </td>
-      </ng-container>
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let element" class="name"> {{element.createdAt.slice(0, 10)}} </td>
+            </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element" class="button-cell">
-          <button mat-raised-button color="primary" *ngIf="!element.paid"
-                  (click)="setAsPaid(element._id)">Set as paid
-          </button>
-        </td>
-      </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" class="button-cell">
+                    <button mat-raised-button color="primary" *ngIf="!element.paid"
+                            (click)="setAsPaid(element._id)">Set as paid
+                    </button>
+                </td>
+            </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <ng-template #loader>
+            <mat-spinner></mat-spinner>
+        </ng-template>
 
-    <p class="no-data" *ngIf="!debts.length">No loans to display</p>
-  </mat-card-content>
+        <p class="no-data" *ngIf="!debts.length">No loans to display</p>
+    </mat-card-content>
 </mat-card>

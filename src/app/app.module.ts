@@ -26,6 +26,7 @@ import {DutiesEditionComponent} from './components/duties/duties-edition/duties-
 import {DebtsComponent} from './components/debts/debts/debts.component';
 import {GivenLoansComponent} from './components/debts/given-loans/given-loans.component';
 import { ShoppingDetailsComponent } from './components/shopping/shopping-details/shopping-details.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import { ShoppingDetailsComponent } from './components/shopping/shopping-details
         DebtsComponent,
         GivenLoansComponent,
         ShoppingDetailsComponent,
+        ProfileComponent,
     ],
     imports: [
         BrowserModule,

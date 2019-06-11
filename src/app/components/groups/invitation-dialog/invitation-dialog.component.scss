@@ -17,8 +17,12 @@
   }
 }
 
-.copy-button {
+.primary-button {
   background: $primaryColor !important;
+}
+
+.email-button {
+  margin-right: 5px;
 }
 
 .close-button {

@@ -10,6 +10,7 @@ import {User} from '../../../interfaces/IUser';
     styleUrls: ['./members.component.scss']
 })
 export class MembersComponent implements OnInit {
+    public id: string = this.route.snapshot.paramMap.get('id');
     public displayedColumns: string[] = ['username', 'bank_account_number', 'action'];
     public members: User[] = [];
 
@@ -19,8 +20,7 @@ export class MembersComponent implements OnInit {
     }
 
     public ngOnInit() {
-        const id = this.route.snapshot.paramMap.get('id');
-        this.groupsService.getMembers(id).subscribe(
+        this.groupsService.getMembers(this.id).subscribe(
             (res) => {
                 this.members = res.members;
             },
@@ -28,7 +28,7 @@ export class MembersComponent implements OnInit {
     }
 
     public openGroupDialog(): void {
-        this.dialogService.groupInvitationDialog(this.route.snapshot.paramMap.get('id'));
+        this.dialogService.groupInvitationDialog(this.id);
     }
 
 }
