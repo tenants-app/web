@@ -1,24 +1,29 @@
 <div class="container">
-  <div class="spacer"></div>
-  <mat-card class="card">
-    <mat-card-header>
-      <mat-card-subtitle>User</mat-card-subtitle>
-      <mat-card-title>{{user.username}}</mat-card-title>
-    </mat-card-header>
+    <div class="spacer"></div>
+    <mat-card class="card">
+        <div *ngIf="user; else loader">
+            <mat-card-header>
+                <mat-card-subtitle>User</mat-card-subtitle>
+                <mat-card-title>{{user.username}}</mat-card-title>
+            </mat-card-header>
 
-    <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
 
-    <mat-card-content>
-      <mat-card-subtitle class="subtitle">Email</mat-card-subtitle>
-      <mat-card-title class="email">{{user.email}}</mat-card-title>
+            <mat-card-content>
+                <mat-card-subtitle class="subtitle">Email</mat-card-subtitle>
+                <mat-card-title class="email">{{user.email}}</mat-card-title>
 
-      <mat-card-subtitle class="subtitle">Bank account</mat-card-subtitle>
-      <mat-card-title class="bank-number">{{user.bank_account_number}}</mat-card-title>
+                <mat-card-subtitle class="subtitle">Bank account</mat-card-subtitle>
+                <mat-card-title class="bank-number">{{user.bank_account_number}}</mat-card-title>
 
-    </mat-card-content>
+            </mat-card-content>
 
-    <mat-card-actions class="actions">
-      <button mat-button [routerLink]="['/group/' + id]" class="secondary-button">Back</button>
-    </mat-card-actions>
-  </mat-card>
+            <mat-card-actions class="actions">
+                <button mat-button [routerLink]="['/group/' + id]" class="secondary-button">Back</button>
+            </mat-card-actions>
+        </div>
+        <ng-template #loader>
+            <mat-spinner></mat-spinner>
+        </ng-template>
+    </mat-card>
 </div>
