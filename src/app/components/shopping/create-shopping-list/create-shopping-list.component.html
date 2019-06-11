@@ -21,9 +21,9 @@
                     </tr>
                     <tr *ngFor="let item of items; let i = index" [attr.data-index]="i">
                         <td>{{ item.name }}</td>
-                        <td>{{ item.price }}</td>
+                        <td>{{ item.value }}</td>
                         <td>
-                            <button mat-raised-button color="primary" (click)="removeItem(i)" class="primary-button">
+                            <button mat-raised-button color="primary" (click)="removeItem(i)" class="secondary-button">
                                 Remove
                             </button>
                         </td>
@@ -40,17 +40,21 @@
                     </div>
                     <div>
                         <mat-form-field class="input-wrapper">
-                            <input matInput placeholder="Price" formControlName="price" maxlength="30" required>
+                            <input matInput placeholder="Price" formControlName="value" maxlength="30" required>
                         </mat-form-field>
                     </div>
 
-                    <button mat-button (click)="addItem()" [disabled]="!item.valid">Add shopping list</button>
+                    <button mat-raised-button color="primary" (click)="addItem()" [disabled]="!item.valid">
+                        Add shopping list
+                    </button>
                 </form>
             </div>
         </mat-card-content>
 
         <mat-card-footer class="actions">
-            <button mat-button (click)="submitList()" [disabled]="!name || !items.length">Add shopping list
+            <button mat-raised-button color="primary" (click)="submitList()"
+                    [disabled]="!name || !items.length || loading">
+                Add shopping list
             </button>
         </mat-card-footer>
     </mat-card>

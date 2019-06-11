@@ -15,6 +15,10 @@ export class ShoppingService {
     }
 
     public postShoppingList(groupId, listName, items) {
-        return this.apiService.post('/groups/' + groupId + '/shoppingLists', {items, name: listName});
+        return this.apiService.post('/groups/' + groupId + '/shoppingLists', {products: items, name: listName});
+    }
+
+    public payShoppingList(groupId, listId) {
+        return this.apiService.post('/groups/' + groupId + '/shoppingLists/' + listId + '/paid');
     }
 }

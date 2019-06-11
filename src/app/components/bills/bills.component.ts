@@ -40,7 +40,7 @@ export class BillsComponent implements OnInit {
     public saveBill() {
         this.billsService.createBill(this.id, this.billData.value).subscribe(
             (res) => {
-                this.snackBar.show(' got created');
+                this.snackBar.show('Bill got created');
                 this.billCreation = false;
                 this.fetchBills();
             }, (err) => {
@@ -52,7 +52,7 @@ export class BillsComponent implements OnInit {
     public payBill(billId) {
         this.billsService.payBill(this.id, billId).subscribe(
             (res) => {
-                this.snackBar.show(' got paid');
+                this.snackBar.show('Bill got paid');
                 this.fetchBills();
             }, (err) => {
                 this.snackBar.show('There was an error paying the bill');

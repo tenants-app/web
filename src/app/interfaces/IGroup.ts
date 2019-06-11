@@ -2,6 +2,7 @@ import {Duty} from './IDuty';
 import {Debt} from './IDebt';
 import {Bill} from './IBill';
 import {User} from './IUser';
+import {ShoppingList} from './IShoppingList';
 
 export interface Group {
     _id: string;
@@ -11,5 +12,5 @@ export interface Group {
     debts: Array<Debt>;
     bills: Array<Bill>;
     members: Array<User>;
-    // todo: dodać shopping listę array
+    shoppingLists: Array<ShoppingList>;
 }

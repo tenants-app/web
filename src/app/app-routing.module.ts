@@ -9,6 +9,7 @@ import {GroupComponent} from './components/groups/group/group.component';
 import {GroupJoinComponent} from './components/groups/group-join/group-join.component';
 import {CreateShoppingListComponent} from './components/shopping/create-shopping-list/create-shopping-list.component';
 import {DutiesEditionComponent} from './components/duties/duties-edition/duties-edition.component';
+import {ShoppingDetailsComponent} from './components/shopping/shopping-details/shopping-details.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent, canActivate: [GuestGuard]},
@@ -17,6 +18,7 @@ const routes: Routes = [
     {path: 'group/:id', component: GroupComponent, canActivate: [AuthGuard]},
     {path: 'group/join/:token', component: GroupJoinComponent},
     {path: 'group/:id/shopping', component: CreateShoppingListComponent, canActivate: [AuthGuard]},
+    {path: 'group/:id/shopping/:listId', component: ShoppingDetailsComponent, canActivate: [AuthGuard]},
     {path: 'group/:id/duties', component: DutiesEditionComponent, canActivate: [AuthGuard]},
     {path: '**', redirectTo: '/groups'}
 ];

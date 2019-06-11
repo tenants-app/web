@@ -1,0 +1,65 @@
+@import "../../../../styles";
+
+.card {
+  margin: 10px;
+}
+
+.container {
+  background: linear-gradient(to right, $primaryColor, $secondaryColor);
+  min-height: 90vh;
+  padding-bottom: .5vh;
+}
+
+.spacer {
+  height: 25px;
+}
+
+.actions {
+  text-align: right;
+}
+
+.primary-button {
+  background: $primaryColor !important;
+  color: white !important;
+}
+
+.secondary-button {
+  background: $secondaryColor !important;
+  color: white !important;
+}
+
+.button-cell {
+  .primary-button {
+    margin-right: 5px;
+  }
+}
+
+.no-data {
+  margin: 15px;
+  padding-top: 25px;
+  color: $standardGrey;
+}
+
+.secondary-title {
+  font-size: 1.2rem;
+  padding: 15px;
+}
+
+.row {
+  display: flex;
+
+  .column {
+    display: inline-block;
+    width: 50%;
+    margin: 15px;
+
+    table {
+      width: 100% !important;
+      font-weight: bold;
+    }
+  }
+}
+
+.price {
+  color: $primaryColor;
+}

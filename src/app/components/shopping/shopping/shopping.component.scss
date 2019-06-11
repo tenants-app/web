@@ -6,9 +6,25 @@
 
 .actions {
   text-align: right;
+}
 
+.primary-button {
+  background: $primaryColor !important;
+  color: white !important;
+}
+
+.button-cell {
   .primary-button {
-    background: $primaryColor;
-    color: white;
+    margin-right: 5px;
   }
+}
+
+.no-data {
+  margin: 15px;
+  padding-top: 25px;
+  color: $standardGrey;
+}
+
+table {
+  width: 100% !important;
 }

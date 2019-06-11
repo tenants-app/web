@@ -16,11 +16,12 @@
 
 .actions {
   text-align: right;
+  padding: 10px;
 }
 
-.primary-button {
-  background: $primaryColor;
-  color: white;
+.secondary-button {
+  background: $secondaryColor !important;
+  color: white !important;
 }
 
 .content {

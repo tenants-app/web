@@ -1,17 +1,20 @@
 import {Component, OnInit} from '@angular/core';
+import {ShoppingList} from '../../../interfaces/IShoppingList';
 import {ShoppingService} from '../../../services/shopping.service';
 import {ActivatedRoute} from '@angular/router';
-import {ShoppingList} from '../../../interfaces/IShoppingList';
 import {SnackBarService} from '../../../services/snack-bar.service';
+import {Product} from '../../../interfaces/IProduct';
 
 @Component({
-    selector: 'app-shopping',
-    templateUrl: './shopping.component.html',
-    styleUrls: ['./shopping.component.scss']
+    selector: 'app-shopping-details',
+    templateUrl: './shopping-details.component.html',
+    styleUrls: ['./shopping-details.component.scss']
 })
-export class ShoppingComponent implements OnInit {
+export class ShoppingDetailsComponent implements OnInit {
     protected id: string = this.route.snapshot.paramMap.get('id');
-    public shoppingLists: ShoppingList[] = [];
+    public shoppingLists: ShoppingList = null;
+    public products: Product[] = [];
+    public displayedProductsColumns: string[] = ['name', 'value'];
     public displayedColumns: string[] = ['name', 'created by', 'value', 'you owe', 'status', 'date', 'actions'];
 
     constructor(private shoppingService: ShoppingService,
@@ -26,7 +29,8 @@ export class ShoppingComponent implements OnInit {
     public fetchShoppingLists() {
         this.shoppingService.getShoppingList(this.id).subscribe(
             (res) => {
-                this.shoppingLists = res.shoppingLists;
+                this.shoppingLists = res.shoppingLists[0];
+                this.products = this.shoppingLists.products;
             },
         );
     }
@@ -39,4 +43,5 @@ export class ShoppingComponent implements OnInit {
             this.snackBar.show('There was an error paying for shopping');
         });
     }
+
 }
