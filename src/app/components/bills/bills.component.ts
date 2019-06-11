@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SnackBarService} from '../../services/snack-bar.service';
 import {Bill} from '../../interfaces/IBill';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
     selector: 'app-bills',
@@ -19,13 +20,16 @@ export class BillsComponent implements OnInit {
         value: new FormControl('', [Validators.minLength(1), Validators.maxLength(10)]),
     });
     public displayedColumns: string[] = ['name', 'created by', 'value', 'you owe', 'status', 'date', 'actions'];
+    public userId: string = null;
 
     constructor(private billsService: BillsService,
+                private authService: AuthService,
                 private snackBar: SnackBarService,
                 private route: ActivatedRoute) {
     }
 
     public ngOnInit() {
+        this.userId = this.authService.currentUser$.value.id;
         this.fetchBills();
     }
 
@@ -35,6 +39,24 @@ export class BillsComponent implements OnInit {
                 this.bills = res.bills;
             },
         );
+    }
+
+    public isDebtPaid(debtors): any {
+        for (let i = 0; i < debtors.length; i++) {
+            if (debtors[i].user === this.userId) {
+                return debtors[i].paid;
+            }
+        }
+        return false;
+    }
+
+    public getDebtValue(debtors): any {
+        for (let i = 0; i < debtors.length; i++) {
+            if (debtors[i].user === this.userId) {
+                return debtors[i].value;
+            }
+        }
+        return false;
     }
 
     public saveBill(): void {

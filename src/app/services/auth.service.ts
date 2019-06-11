@@ -12,7 +12,7 @@ import {User} from '../models/User';
 export class AuthService {
 
     private loggedIn = new BehaviorSubject<boolean>(false);
-    private currentUser$ = new BehaviorSubject<User>(this.getUser());
+    public currentUser$ = new BehaviorSubject<User>(this.getUser());
 
     constructor(private apiService: ApiService,
                 private jwtHelper: JwtHelperService,

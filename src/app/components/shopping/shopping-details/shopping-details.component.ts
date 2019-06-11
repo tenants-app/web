@@ -4,6 +4,8 @@ import {ShoppingService} from '../../../services/shopping.service';
 import {ActivatedRoute} from '@angular/router';
 import {SnackBarService} from '../../../services/snack-bar.service';
 import {Product} from '../../../interfaces/IProduct';
+import {User} from '../../../interfaces/IUser';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'app-shopping-details',
@@ -12,33 +14,44 @@ import {Product} from '../../../interfaces/IProduct';
 })
 export class ShoppingDetailsComponent implements OnInit {
     protected id: string = this.route.snapshot.paramMap.get('id');
-    public shoppingLists: ShoppingList = null;
+    protected listId: string = this.route.snapshot.paramMap.get('listId');
     public products: Product[] = [];
-    public displayedProductsColumns: string[] = ['name', 'value'];
-    public displayedColumns: string[] = ['name', 'created by', 'value', 'you owe', 'status', 'date', 'actions'];
+    public debtors: User[] = [];
+    public shoppingList: ShoppingList = null;
+    public loading = false;
+    public productsColumns: string[] = ['name', 'value'];
+    public membersColumns: string[] = ['name', 'value', 'status', 'actions'];
+    public userId: string = null;
 
     constructor(private shoppingService: ShoppingService,
+                private authService: AuthService,
                 private route: ActivatedRoute,
                 private snackBar: SnackBarService) {
     }
 
     public ngOnInit() {
-        this.fetchShoppingLists();
+        this.fetchShoppingList();
+        this.userId = this.authService.currentUser$.value.id;
     }
 
-    protected fetchShoppingLists(): void {
-        this.shoppingService.getShoppingList(this.id).subscribe(
+    protected fetchShoppingList(): void {
+        this.loading = true;
+        this.shoppingService.getShoppingListDetails(this.id, this.listId).subscribe(
             (res) => {
-                this.shoppingLists = res.shoppingLists[0];
-                this.products = this.shoppingLists.products;
-            },
+                this.shoppingList = res.shoppingList;
+                this.products = res.shoppingList.products;
+                this.debtors = res.shoppingList.debtors;
+                this.loading = false;
+            }, (err) => {
+                this.loading = false;
+            }
         );
     }
 
-    public payShopping(listId: string): void {
-        this.shoppingService.payShoppingList(this.id, listId).subscribe((res) => {
+    public payShopping(): void {
+        this.shoppingService.payShoppingList(this.id, this.listId).subscribe((res) => {
             this.snackBar.show('Shopping got paid');
-            this.fetchShoppingLists();
+            this.fetchShoppingList();
         }, (err) => {
             this.snackBar.show('There was an error paying for shopping');
         });

@@ -20,8 +20,8 @@
                         <th>Actions</th>
                     </tr>
                     <tr *ngFor="let item of items; let i = index" [attr.data-index]="i">
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.value }}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.value}}</td>
                         <td>
                             <button mat-raised-button color="primary" (click)="removeItem(i)" class="secondary-button">
                                 Remove

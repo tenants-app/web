@@ -1,114 +1,94 @@
 <div class="container">
     <div class="spacer"></div>
     <mat-card class="card">
-        <mat-card-header>
-            <mat-card-subtitle>Shopping list</mat-card-subtitle>
-            <mat-card-title>Zakupy w biedrze</mat-card-title>
-            <mat-card-subtitle>02-06-2016</mat-card-subtitle>
-        </mat-card-header>
+        <div *ngIf="shoppingList; else loading">
+            <mat-card-header>
+                <mat-card-subtitle>Shopping list</mat-card-subtitle>
+                <mat-card-title>{{shoppingList.name}}</mat-card-title>
+                <mat-card-subtitle>{{shoppingList.createdAt.slice(0, 10)}}</mat-card-subtitle>
+            </mat-card-header>
 
-        <mat-divider></mat-divider>
+            <mat-divider></mat-divider>
 
-        <mat-card-content>
-            <mat-card-title class="secondary-title">Products list</mat-card-title>
+            <mat-card-content>
 
-            <div class="row">
-                <div class="column">
-                    <table mat-table *ngIf="products.length" [dataSource]="products" class="table">
-                        <ng-container matColumnDef="name">
-                            <th mat-header-cell *matHeaderCellDef>Product</th>
-                            <td mat-cell *matCellDef="let element" class="name"> {{element.name}} </td>
-                        </ng-container>
+                <div class="row">
+                    <div class="column">
+                        <mat-card-title class="secondary-title">Products list</mat-card-title>
 
-                        <ng-container matColumnDef="value">
-                            <th mat-header-cell *matHeaderCellDef>Value</th>
-                            <td mat-cell *matCellDef="let element" class="price"> {{element.value}} zł </td>
-                        </ng-container>
+                        <table mat-table *ngIf="products.length" [dataSource]="products" class="table">
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef>Product</th>
+                                <td mat-cell *matCellDef="let element" class="name"> {{element.name}} </td>
+                            </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="displayedProductsColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedProductsColumns;"></tr>
-                    </table>
-                    <p class="no-data" *ngIf="!products.length">No products to display</p>
+                            <ng-container matColumnDef="value">
+                                <th mat-header-cell *matHeaderCellDef>Value</th>
+                                <td mat-cell *matCellDef="let element" class="price"> {{element.value}} zł</td>
+                            </ng-container>
 
-                    <mat-card-title class="secondary-title">Sum: <span class="price">2 zł</span></mat-card-title>
-                </div>
+                            <tr mat-header-row *matHeaderRowDef="productsColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: productsColumns;"></tr>
+                        </table>
+                        <p class="no-data" *ngIf="!products.length">No products to display</p>
 
+                        <mat-card-title class="secondary-title">Sum: <span class="price">2 zł</span></mat-card-title>
+                    </div>
 
-                <div class="column">
-                    <table mat-table *ngIf="products.length" [dataSource]="products" class="table">
-                        <ng-container matColumnDef="name">
-                            <th mat-header-cell *matHeaderCellDef>Name</th>
-                            <td mat-cell *matCellDef="let element" class="name"> {{element.name}} </td>
-                        </ng-container>
+                    <div class="column">
+                        <mat-card-title class="secondary-title">Debtors</mat-card-title>
 
-                        <ng-container matColumnDef="created by">
-                            <th mat-header-cell *matHeaderCellDef>Created by</th>
-                            <td mat-cell *matCellDef="let element" class="name">
-                                <span>{{element.user.username}} </span>
-                                <span class="bank-number">{{element.user.bank_account_number}}</span>
-                            </td>
-                        </ng-container>
+                        <table mat-table *ngIf="debtors.length" [dataSource]="debtors" class="table">
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef>Name</th>
+                                <td mat-cell *matCellDef="let element" class="name"> {{element.user.username}} </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="value">
-                            <th mat-header-cell *matHeaderCellDef>Value</th>
-                            <td mat-cell *matCellDef="let element" class="name"> {{element.value}} </td>
-                        </ng-container>
+                            <ng-container matColumnDef="value">
+                                <th mat-header-cell *matHeaderCellDef>Value</th>
+                                <td mat-cell *matCellDef="let element" class="debt"> {{element.value}} zł </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="you owe">
-                            <th mat-header-cell *matHeaderCellDef>You owe</th>
-                            <td mat-cell *matCellDef="let element" class="name">
-                                <span *ngIf="element.debtors.length">{{element.debtors[0].value}}</span>
-                            </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="status">
-                            <th mat-header-cell *matHeaderCellDef>Status</th>
-                            <td mat-cell *matCellDef="let element" class="name">
-                                <mat-chip-list aria-label="Fish selection">
-                                    <mat-chip *ngIf="!element.debtors.length; else debt">n/a</mat-chip>
-                                    <ng-template #debt>
-                                        <mat-chip *ngIf="element.debtors[0].paid; else notPaid" color="primary"
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef>Status</th>
+                                <td mat-cell *matCellDef="let element" class="name">
+                                    <mat-chip-list aria-label="Fish selection">
+                                        <mat-chip *ngIf="element.paid; else notPaid" color="primary"
                                                   selected>Paid
                                         </mat-chip>
                                         <ng-template #notPaid>
                                             <mat-chip>Not paid</mat-chip>
                                         </ng-template>
-                                    </ng-template>
-                                </mat-chip-list>
-                            </td>
-                        </ng-container>
+                                    </mat-chip-list>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="date">
-                            <th mat-header-cell *matHeaderCellDef>Date</th>
-                            <td mat-cell *matCellDef="let element"
-                                class="name"> {{element.createdAt.slice(0, 10)}} </td>
-                        </ng-container>
+                            <ng-container matColumnDef="actions">
+                                <th mat-header-cell *matHeaderCellDef></th>
+                                <td mat-cell *matCellDef="let element" class="button-cell">
+                                    <button mat-raised-button color="primary"
+                                            *ngIf="!element.paid && element.user._id === userId"
+                                            (click)="payShopping()">Set as paid
+                                    </button>
+                                </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="actions">
-                            <th mat-header-cell *matHeaderCellDef></th>
-                            <td mat-cell *matCellDef="let element"
-                                [routerLink]="['/group/' + id + '/shopping/' + element._id]"
-                                class="button-cell">
-                                <button mat-raised-button color="primary" class="primary-button">Details
-                                </button>
-                                <button mat-raised-button color="primary"
-                                        *ngIf="element.debtors.length && !element.debtors[0].paid"
-                                        (click)="payShopping(element._id)">Set as paid
-                                </button>
-                            </td>
-                        </ng-container>
-
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                    <p class="no-data" *ngIf="!products.length">No shopping lists to display</p>
+                            <tr mat-header-row *matHeaderRowDef="membersColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: membersColumns;"></tr>
+                        </table>
+                        <p class="no-data" *ngIf="!products.length">No shopping lists to display</p>
+                    </div>
                 </div>
-            </div>
 
-        </mat-card-content>
+            </mat-card-content>
 
-        <mat-card-actions class="actions">
-            <button mat-button [routerLink]="['/group/' + id]" class="secondary-button">Back</button>
-        </mat-card-actions>
+            <mat-card-actions class="actions">
+                <button mat-button [routerLink]="['/group/' + id]" class="secondary-button">Back</button>
+            </mat-card-actions>
+        </div>
     </mat-card>
+
+    <ng-template #loading>
+        <mat-spinner></mat-spinner>
+    </ng-template>
 </div>

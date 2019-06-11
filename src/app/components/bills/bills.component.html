@@ -26,7 +26,7 @@
             <ng-container matColumnDef="you owe">
                 <th mat-header-cell *matHeaderCellDef>You owe</th>
                 <td mat-cell *matCellDef="let element" class="name">
-                    <span *ngIf="element.debtors.length">{{element.debtors[0].value}}</span>
+                    <span *ngIf="element.debtors.length">{{getDebtValue(element.debtors)}}</span>
                 </td>
             </ng-container>
 
@@ -36,7 +36,7 @@
                     <mat-chip-list aria-label="Fish selection">
                         <mat-chip *ngIf="!element.debtors.length; else debt">n/a</mat-chip>
                         <ng-template #debt>
-                            <mat-chip *ngIf="element.debtors[0].paid; else notPaid" color="primary" selected>Paid
+                            <mat-chip *ngIf="isDebtPaid(element.debtors); else notPaid" color="primary" selected>Paid
                             </mat-chip>
                             <ng-template #notPaid>
                                 <mat-chip>Not paid</mat-chip>
@@ -54,7 +54,8 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element" class="button-cell">
-                    <button mat-raised-button color="primary" *ngIf="element.debtors.length && !element.debtors[0].paid"
+                    <button mat-raised-button color="primary"
+                            *ngIf="element.debtors.length && !isDebtPaid(element.debtors)"
                             (click)="payBill(element._id)">Set as paid
                     </button>
                 </td>

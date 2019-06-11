@@ -23,4 +23,8 @@ export class ShoppingService {
     public payShoppingList(groupId: string, listId: string): Observable<any> {
         return this.apiService.post('/groups/' + groupId + '/shoppingLists/' + listId + '/paid');
     }
+
+    public getShoppingListDetails(groupId: string, listId: string): Observable<any> {
+        return this.apiService.get('/groups/' + groupId + '/shoppingLists/' + listId);
+    }
 }
