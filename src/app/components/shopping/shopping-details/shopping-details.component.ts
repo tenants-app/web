@@ -22,11 +22,11 @@ export class ShoppingDetailsComponent implements OnInit {
                 private snackBar: SnackBarService) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.fetchShoppingLists();
     }
 
-    public fetchShoppingLists() {
+    protected fetchShoppingLists(): void {
         this.shoppingService.getShoppingList(this.id).subscribe(
             (res) => {
                 this.shoppingLists = res.shoppingLists[0];
@@ -35,7 +35,7 @@ export class ShoppingDetailsComponent implements OnInit {
         );
     }
 
-    public payShopping(listId) {
+    public payShopping(listId: string): void {
         this.shoppingService.payShoppingList(this.id, listId).subscribe((res) => {
             this.snackBar.show('Shopping got paid');
             this.fetchShoppingLists();

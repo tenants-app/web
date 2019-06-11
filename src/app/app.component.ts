@@ -9,18 +9,18 @@ import {SnackBarService} from './services/snack-bar.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    isLoggedIn$: Observable<boolean>;
+    public isLoggedIn$: Observable<boolean>;
 
     constructor(
         private authService: AuthService,
         private snackBar: SnackBarService) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.isLoggedIn$ = this.authService.isLoggedIn;
     }
 
-    onLogout() {
+    public onLogout(): void {
         this.authService.logout();
         this.snackBar.show('Logged out');
     }

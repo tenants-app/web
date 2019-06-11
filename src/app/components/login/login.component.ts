@@ -18,7 +18,7 @@ export class LoginComponent {
                 private router: Router) {
     }
 
-    public login() {
+    public login(): void {
         this.authService.login(this.userData.value);
         this.router.navigate(['/']);
     }

@@ -25,11 +25,11 @@ export class BillsComponent implements OnInit {
                 private route: ActivatedRoute) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.fetchBills();
     }
 
-    public fetchBills() {
+    protected fetchBills(): void {
         this.billsService.getBills(this.id).subscribe(
             (res) => {
                 this.bills = res.bills;
@@ -37,7 +37,7 @@ export class BillsComponent implements OnInit {
         );
     }
 
-    public saveBill() {
+    public saveBill(): void {
         this.billsService.createBill(this.id, this.billData.value).subscribe(
             (res) => {
                 this.snackBar.show('Bill got created');
@@ -49,7 +49,7 @@ export class BillsComponent implements OnInit {
         );
     }
 
-    public payBill(billId) {
+    public payBill(billId: string): void {
         this.billsService.payBill(this.id, billId).subscribe(
             (res) => {
                 this.snackBar.show('Bill got paid');

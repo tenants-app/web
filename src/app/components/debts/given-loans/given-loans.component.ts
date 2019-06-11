@@ -3,6 +3,8 @@ import {DebtsService} from '../../../services/debts.service';
 import {GroupsService} from '../../../services/groups.service';
 import {SnackBarService} from '../../../services/snack-bar.service';
 import {ActivatedRoute} from '@angular/router';
+import {Debt} from '../../../interfaces/IDebt';
+import {User} from '../../../interfaces/IUser';
 
 @Component({
     selector: 'app-given-loans',
@@ -11,9 +13,9 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class GivenLoansComponent implements OnInit {
     private id: string = this.route.snapshot.paramMap.get('id');
-    debts = [];
-    members = [];
-    displayedColumns: string[] = ['name', 'created by', 'value', 'status', 'date', 'actions'];
+    public debts: Debt[] = [];
+    public members: User[] = [];
+    public displayedColumns: string[] = ['name', 'created by', 'value', 'status', 'date', 'actions'];
 
     constructor(private debtsService: DebtsService,
                 private groupService: GroupsService,
@@ -21,11 +23,11 @@ export class GivenLoansComponent implements OnInit {
                 private route: ActivatedRoute) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.fetchGivenLoans();
     }
 
-    fetchGivenLoans() {
+    protected fetchGivenLoans(): void {
         this.debtsService.fetchGivenLoans(this.id).subscribe(
             (res) => {
                 this.debts = res.debts;
@@ -33,7 +35,7 @@ export class GivenLoansComponent implements OnInit {
         );
     }
 
-    public setAsPaid(holderId) {
+    public setAsPaid(holderId: string): void {
         this.debtsService.payDebt(this.id, holderId).subscribe(
             (res) => {
                 this.snackBar.show('Debt was set as paid');

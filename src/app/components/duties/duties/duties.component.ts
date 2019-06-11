@@ -19,7 +19,7 @@ export class DutiesComponent implements OnInit {
                 private route: ActivatedRoute) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.dutiesService.getDuties(this.id).subscribe(
             (res) => {
                 this.duties = res.duties;

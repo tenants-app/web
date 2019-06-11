@@ -11,7 +11,6 @@ import {SnackBarService} from '../../../services/snack-bar.service';
 })
 export class CreateShoppingListComponent {
     public name = new FormControl('', [Validators.minLength(3), Validators.maxLength(30)]);
-
     public item = new FormGroup({
         name: new FormControl('', [Validators.minLength(1), Validators.maxLength(30)]),
         value: new FormControl('', [Validators.required]),
@@ -25,7 +24,7 @@ export class CreateShoppingListComponent {
                 private route: ActivatedRoute) {
     }
 
-    submitList() {
+    public submitList(): void {
         this.loading = true;
         const id = this.route.snapshot.paramMap.get('id');
         this.shoppingService.postShoppingList(id, this.name.value, this.items).subscribe(
@@ -39,11 +38,11 @@ export class CreateShoppingListComponent {
         this.loading = false;
     }
 
-    addItem() {
+    public addItem(): void {
         this.items.push(this.item.value);
     }
 
-    removeItem(index) {
+    public removeItem(index: number): void {
         this.items = this.items.slice(0, index).concat(this.items.slice(index + 1, this.items.length));
     }
 }

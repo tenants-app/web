@@ -6,13 +6,12 @@ import {BehaviorSubject, Observable} from 'rxjs';
     providedIn: 'root'
 })
 export class GroupsService {
-
     private groups = new BehaviorSubject<object>([]);
 
     constructor(private apiService: ApiService) {
     }
 
-    public getAuthGroups() {
+    public getAuthGroups(): Observable<any> {
         this.apiService.get('/users/groups').subscribe(
             res => {
                 this.groups.next(res.groups);
@@ -21,25 +20,25 @@ export class GroupsService {
         return this.groups.asObservable();
     }
 
-    public getGroup(id) {
+    public getGroup(id: string): Observable<any> {
         return this.apiService.get('/groups/' + id);
     }
 
-    public getMembers(id) {
+    public getMembers(id: string): Observable<any> {
         return this.apiService.get('/groups/' + id + '/members');
     }
 
-    public createGroup(name): Observable<any> {
+    public createGroup(name: string): Observable<any> {
         return this.apiService.post('/groups/new', {name});
     }
 
-    public joinGroup(token): Observable<any> {
-        return this.apiService.get('/activate_member/');
+    public joinGroup(token: string): Observable<any> {
+        return this.apiService.get('/activate_member/' + token);
     }
 
-    public createInvitation(email, groupId): Observable<any> {
+    public createInvitation(email: string, groupId: string): Observable<any> {
         const data = {
-            email: email,
+            email,
             group_id: groupId
         };
         return this.apiService.post('/groups/generate_member_link', data);

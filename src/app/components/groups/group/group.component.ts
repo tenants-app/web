@@ -17,7 +17,7 @@ export class GroupComponent implements OnInit {
                 private router: Router) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         const id = this.route.snapshot.paramMap.get('id');
         this.groupsService.getGroup(id).subscribe(
             (res) => {

@@ -4,7 +4,7 @@ import {AuthGuard} from './auth.guard';
 
 @Injectable()
 export class GuestGuard extends AuthGuard {
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         if (!this.auth.isAuthenticated()) {
             return true;
         } else {

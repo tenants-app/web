@@ -23,7 +23,7 @@ export class DutiesEditionComponent implements OnInit {
                 private snackBar: SnackBarService) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.groupsService.getMembers(this.id).subscribe(
             (res) => {
                 this.members = res.members;
@@ -32,21 +32,21 @@ export class DutiesEditionComponent implements OnInit {
     }
 
 
-    submit() {
+    public submit(): void {
         if (Number.isInteger(this.length.value)) {
             this.dutiesService.postDuties(this.id, this.length.value, this.members).subscribe((res) => {
                 this.snackBar.show('Duties were saved');
                 this.router.navigate(['/group/' + this.id]);
             }, (err) => {
                 this.snackBar.show('Could not save duties');
-                // this.router.navigate(['/group/' + this.id]);
+                this.router.navigate(['/group/' + this.id]);
             });
         } else {
             this.snackBar.show('Cycle length must be integer');
         }
     }
 
-    moveUp(index) {
+    public moveUp(index: number): void {
         if (index !== 0) {
             const firstElement = this.members[index];
             this.members[index] = this.members[index - 1];
@@ -54,7 +54,7 @@ export class DutiesEditionComponent implements OnInit {
         }
     }
 
-    moveDown(index) {
+    public moveDown(index: number): void {
         if (index !== this.members.length - 1) {
             const firstElement = this.members[index];
             this.members[index] = this.members[index + 1];

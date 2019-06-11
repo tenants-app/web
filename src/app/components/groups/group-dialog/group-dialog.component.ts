@@ -20,7 +20,7 @@ export class GroupDialogComponent {
                 public dialogRef: MatDialogRef<GroupDialogComponent>) {
     }
 
-    onCreation() {
+    public onCreation(): void {
         if (!!this.groupForm.invalid) {
             return;
         }
@@ -30,7 +30,7 @@ export class GroupDialogComponent {
         });
     }
 
-    confirmAndClose() {
+    public confirmAndClose(): void {
         this.loadingSpinner = false;
         this.snackBar.show('Apartment group created');
         this.groupsService.getAuthGroups();

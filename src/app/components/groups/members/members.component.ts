@@ -18,7 +18,7 @@ export class MembersComponent implements OnInit {
                 private dialogService: DialogService) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         const id = this.route.snapshot.paramMap.get('id');
         this.groupsService.getMembers(id).subscribe(
             (res) => {
@@ -27,7 +27,7 @@ export class MembersComponent implements OnInit {
         );
     }
 
-    public openGroupDialog() {
+    public openGroupDialog(): void {
         this.dialogService.groupInvitationDialog(this.route.snapshot.paramMap.get('id'));
     }
 

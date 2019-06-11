@@ -11,8 +11,7 @@ import {MatDialogRef} from '@angular/material';
 export class InvitationDialogComponent {
     public loadingSpinner = false;
     public link = '';
-
-    groupForm = new FormGroup({
+    public groupForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
     });
 
@@ -20,7 +19,7 @@ export class InvitationDialogComponent {
                 public dialogRef: MatDialogRef<InvitationDialogComponent>) {
     }
 
-    onCreation() {
+    public onCreation() {
         if (!!this.groupForm.invalid) {
             return;
         }
@@ -32,13 +31,13 @@ export class InvitationDialogComponent {
         });
     }
 
-    myFunction() {
+    public copyLink(): void {
         const copyText = document.getElementById('linkText') as HTMLInputElement;
         copyText.select();
         document.execCommand('copy');
     }
 
-    close() {
+    public close(): void {
         this.dialogRef.close();
     }
 }

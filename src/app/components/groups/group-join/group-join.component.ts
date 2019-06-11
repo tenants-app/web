@@ -20,7 +20,7 @@ export class GroupJoinComponent implements OnInit {
                 private route: ActivatedRoute) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.isLoggedIn$ = this.authService.isLoggedIn;
         if (this.isLoggedIn$) {
             this.groupsService.joinGroup(this.route.snapshot.paramMap.get('token')).subscribe((res) => {

@@ -30,12 +30,12 @@ export class DebtsComponent implements OnInit {
                 private route: ActivatedRoute) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.fetchDebts();
         this.fetchMembers();
     }
 
-    public fetchMembers() {
+    protected fetchMembers(): void {
         this.groupService.getMembers(this.id).subscribe(
             (res) => {
                 this.members = res.members;
@@ -43,7 +43,7 @@ export class DebtsComponent implements OnInit {
         );
     }
 
-    public fetchDebts() {
+    protected fetchDebts(): void {
         this.debtsService.getDebts(this.id).subscribe(
             (res) => {
                 this.debts = res.debts;
@@ -51,7 +51,7 @@ export class DebtsComponent implements OnInit {
         );
     }
 
-    public saveLoan() {
+    public saveLoan(): void {
         this.debtsService.createLoan(this.id, this.loanData.value).subscribe(
             (res) => {
                 this.snackBar.show('Debt got created');
@@ -63,7 +63,7 @@ export class DebtsComponent implements OnInit {
         );
     }
 
-    public payDebt(holderId) {
+    public payDebt(holderId: string): void {
         this.debtsService.payDebt(this.id, holderId).subscribe(
             (res) => {
                 this.snackBar.show('Debt was set as paid');

@@ -14,11 +14,11 @@ export class GroupsComponent implements OnInit {
     constructor(private groupsService: GroupsService, private dialogService: DialogService) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.groups$ = this.groupsService.getAuthGroups();
     }
 
-    public openGroupDialog() {
+    public openGroupDialog(): void {
         this.dialogService.groupDialog();
     }
 }
