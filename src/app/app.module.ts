@@ -61,7 +61,7 @@ import { ProfileComponent } from './components/profile/profile.component';
                 tokenGetter: () => {
                     return localStorage.getItem('token');
                 },
-                whitelistedDomains: ['localhost:3000']
+                whitelistedDomains: ['localhost:3000', 'http://207.154.242.233']
             }
         })
     ],
