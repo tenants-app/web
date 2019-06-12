@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GroupsService} from '../../../services/groups.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Group} from '../../../interfaces/IGroup';
+import {SnackBarService} from '../../../services/snack-bar.service';
 
 @Component({
     selector: 'app-group',
@@ -10,11 +11,14 @@ import {Group} from '../../../interfaces/IGroup';
 })
 
 export class GroupComponent implements OnInit {
+    protected id: string = this.route.snapshot.paramMap.get('id');
     public group: Group;
+    public confirmation = false;
 
     constructor(private groupsService: GroupsService,
                 private route: ActivatedRoute,
-                private router: Router) {
+                private router: Router,
+                private snackBar: SnackBarService) {
     }
 
     public ngOnInit() {
@@ -27,5 +31,14 @@ export class GroupComponent implements OnInit {
                 this.router.navigate(['/']);
             }
         );
+    }
+
+    public leaveGroup() {
+        this.groupsService.leaveGroup(this.id).subscribe((res) => {
+            this.snackBar.show('You left the group');
+            this.router.navigate(['/']);
+        }, (err) => {
+            this.snackBar.show('There was an error leaving the group');
+        });
     }
 }

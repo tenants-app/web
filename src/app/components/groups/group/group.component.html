@@ -35,6 +35,15 @@
                 </div>
             </mat-tab>
         </mat-tab-group>
+
+        <button (click)="confirmation = true" *ngIf="!confirmation; else deletion" mat-button class="leave-button">Leave
+            apartment
+        </button>
+
+        <ng-template #deletion>
+            <button mat-raised-button (click)="leaveGroup()" mat-button color="warn" class="leave-button">Are you sure?</button>
+        </ng-template>
+
     </div>
 </div>
 

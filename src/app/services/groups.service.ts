@@ -40,6 +40,10 @@ export class GroupsService {
         return this.apiService.get('/activate_members/' + token);
     }
 
+    public leaveGroup(id: string): Observable<any> {
+        return this.apiService.get('/groups/' + id + '/leave');
+    }
+
     public createInvitation(email: string, groupId: string): Observable<any> {
         const data = {
             email,

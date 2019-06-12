@@ -14,15 +14,22 @@ export class DutiesComponent implements OnInit {
     public duties: Duty[] = [];
     public displayedColumns: string[] = ['user', 'date', 'turn'];
     public today: string = moment().format('YYYY-MM-DD');
+    public loading = false;
 
     constructor(private dutiesService: DutiesService,
                 private route: ActivatedRoute) {
     }
 
     public ngOnInit() {
+        this.fetchDuties();
+    }
+
+    protected fetchDuties() {
+        this.loading = true;
         this.dutiesService.getDuties(this.id).subscribe(
             (res) => {
                 this.duties = res.duties;
+                this.loading = false;
             },
         );
     }
