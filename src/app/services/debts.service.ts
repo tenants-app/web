@@ -14,7 +14,7 @@ export class DebtsService {
         return this.apiService.get('/groups/' + groupId + '/debts');
     }
 
-    protected fetchGivenLoans(groupId: string): Observable<any> {
+    public fetchGivenLoans(groupId: string): Observable<any> {
         return this.apiService.get('/groups/' + groupId + '/debts/given');
     }
 
