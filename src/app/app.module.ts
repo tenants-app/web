@@ -7,7 +7,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login/login.component';
 import {RegistrationComponent} from './components/registration/registration.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtModule} from '@auth0/angular-jwt';
 import {AuthInterceptor} from './interceptors/auth-interceptor';
 import {GroupsComponent} from './components/groups/groups.component';
@@ -27,6 +27,7 @@ import {DebtsComponent} from './components/debts/debts/debts.component';
 import {GivenLoansComponent} from './components/debts/given-loans/given-loans.component';
 import { ShoppingDetailsComponent } from './components/shopping/shopping-details/shopping-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
     declarations: [
@@ -60,12 +61,16 @@ import { ProfileComponent } from './components/profile/profile.component';
             config: {
                 tokenGetter: () => {
                     return localStorage.getItem('token');
-                },
-                whitelistedDomains: ['localhost:3000', '207.154.242.233']
+                }
             }
         })
     ],
-    providers: [AuthInterceptor,
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        },
         AuthGuard,
         GuestGuard],
     bootstrap: [AppComponent],
